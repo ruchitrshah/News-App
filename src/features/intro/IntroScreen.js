@@ -1,46 +1,33 @@
 // Welcome — shown once, before the first briefing. Modelled on Apple's
-// "Welcome to …" sheets: the app's mark, one line on what it is, three
-// short rows on what you can do, one clear button, and a quiet credit.
+// "Welcome to …" sheets: the app's mark, a title, one line on what it does,
+// one button, and a quiet credit.
+//
+// Layout: the page uses the feed's own content inset (card margin + inner
+// inset), so Get started spans exactly where the voice bar sits on the feed
+// you land on.
 //
 // Motion (seen once, so it can take its time — but never makes you wait):
-//   enter     mark rises 12px + scales from 0.94, then the title, then the
-//             rows and button, each 70ms apart (fade + 10px rise, 420ms,
+//   enter     mark rises 12px + scales from 0.94, then the words, then the
+//             button, 70ms apart (fade + 10px rise, 420ms,
 //             ease-out). Everything is tappable from the first frame.
-//   continue  the whole page fades and lifts 16px (220ms, ease-out) as the
-//             feed takes over — exit faster than enter.
+//   continue  the welcome dissolves forward — fade + scale to 1.04 (260ms,
+//             ease-out) — while the feed underneath settles from 0.96 to 1
+//             and fades in (App.js). One continuous hand-off, faster than
+//             the entrance.
 //   reduced   fades only.
 import React, { useEffect, useRef } from 'react';
 import { View, Text, Image, Pressable, Animated, StyleSheet, Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Clapperboard, AudioLines, Sparkles } from 'lucide';
 
-import Icon from '../../components/icons/Icon';
 import { Colors, Space, Radius, Motion, FontFamilies, useReducedMotion } from '../../brand';
 import { TITLE, BODY } from '../feed/type';
+import { CARD } from '../layout';
 
 const MARK = require('../../../assets/splash-icon.png');
 
-const FEATURES = [
-  {
-    icon: Clapperboard,
-    title: 'The news, as short visual stories',
-    body: 'Swipeable cards of real footage, photos and key numbers that play on their own.',
-  },
-  {
-    icon: AudioLines,
-    title: 'Ask about anything you see',
-    body: 'Tap the mic and ask a follow-up. Genie researches it and adds the answer to the story.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Make a briefing on any topic',
-    body: 'Tap + and say what you’re curious about. Genie checks what’s new and builds it for you.',
-  },
-];
-
 const ENTER_MS = 420;
 const STEP_MS = 70;
-const EXIT_MS = 220;
+const EXIT_MS = 260;
 
 function useRise(delay, reduced, { scaleFrom = 1 } = {}) {
   const v = useRef(new Animated.Value(0)).current;
@@ -57,20 +44,6 @@ function useRise(delay, reduced, { scaleFrom = 1 } = {}) {
   };
 }
 
-function Feature({ icon, title, body, style }) {
-  return (
-    <Animated.View style={[styles.feature, style]}>
-      <View style={styles.featureIcon}>
-        <Icon icon={icon} size={22} strokeWidth={2} color={Colors.text.onDark} />
-      </View>
-      <View style={styles.featureText}>
-        <Text style={styles.featureTitle}>{title}</Text>
-        <Text style={styles.featureBody}>{body}</Text>
-      </View>
-    </Animated.View>
-  );
-}
-
 // `onStart` fires on tap (the feed mounts underneath as this fades out);
 // `onDone` once it's gone.
 export default function IntroScreen({ onStart, onDone }) {
@@ -80,8 +53,7 @@ export default function IntroScreen({ onStart, onDone }) {
 
   const mark = useRise(0, reduced, { scaleFrom: 0.94 });
   const heading = useRise(STEP_MS, reduced);
-  const rows = FEATURES.map((_, i) => useRise(STEP_MS * (2 + i), reduced)); // eslint-disable-line react-hooks/rules-of-hooks
-  const footer = useRise(STEP_MS * (2 + FEATURES.length), reduced);
+  const footer = useRise(STEP_MS * 2, reduced);
 
   const done = () => {
     onStart?.();
@@ -90,7 +62,7 @@ export default function IntroScreen({ onStart, onDone }) {
 
   const pageStyle = {
     opacity: exit,
-    transform: reduced ? [] : [{ translateY: exit.interpolate({ inputRange: [0, 1], outputRange: [-16, 0] }) }],
+    transform: reduced ? [] : [{ scale: exit.interpolate({ inputRange: [0, 1], outputRange: [1.04, 1] }) }],
   };
 
   return (
@@ -107,14 +79,10 @@ export default function IntroScreen({ onStart, onDone }) {
           <Text style={styles.title} accessibilityRole="header">
             Welcome to Genie
           </Text>
-          <Text style={styles.subtitle}>The news, explained in a minute — and you can ask it anything.</Text>
+          <Text style={styles.subtitle}>
+            Learn about any trending topic, news, or anything. Just talk about it and get a course made for you in minutes.
+          </Text>
         </Animated.View>
-
-        <View style={styles.features}>
-          {FEATURES.map((f, i) => (
-            <Feature key={f.title} {...f} style={rows[i]} />
-          ))}
-        </View>
       </View>
 
       <Animated.View style={[styles.footer, footer]}>
@@ -150,31 +118,20 @@ const styles = StyleSheet.create({
     bottom: 0,
     zIndex: 50,
     backgroundColor: Colors.surface.page,
-    paddingHorizontal: Space[32],
+    paddingHorizontal: CARD.marginX + CARD.innerX,
     justifyContent: 'space-between',
   },
-  top: { alignItems: 'center' },
+  // Mark and words sit centred in the space above the button.
+  top: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingBottom: Space[24] },
 
   markWrap: { marginBottom: Space[24] },
   mark: { width: 88, height: 88 },
 
-  heading: { alignItems: 'center', gap: Space[8], marginBottom: Space[40] },
+  heading: { alignItems: 'center', gap: Space[8] },
   title: { ...TITLE, textAlign: 'center', color: Colors.text.primary },
-  subtitle: { ...BODY, textAlign: 'center', color: Colors.text.secondary },
+  // Narrower than the page so the two sentences break evenly, no lone word.
+  subtitle: { ...BODY, maxWidth: 290, textAlign: 'center', color: Colors.text.secondary },
 
-  features: { alignSelf: 'stretch', gap: Space[28] },
-  feature: { flexDirection: 'row', alignItems: 'flex-start', gap: Space[16] },
-  featureIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: Radius.full,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.text.primary,
-  },
-  featureText: { flex: 1, gap: Space[2] },
-  featureTitle: { ...BODY, fontFamily: FontFamilies.demi, color: Colors.text.primary },
-  featureBody: { ...BODY, color: Colors.text.secondary },
 
   footer: { alignItems: 'center', gap: Space[16] },
   cta: {
@@ -189,5 +146,6 @@ const styles = StyleSheet.create({
   pressed: { transform: [{ scale: Motion.pressScale }] },
   dim: { opacity: 0.6 },
   credit: { ...BODY, color: Colors.text.tertiary },
-  creditLink: { fontFamily: FontFamilies.demi, color: Colors.text.primary },
+  // Subtle: same size and colour as the line, just underlined.
+  creditLink: { textDecorationLine: 'underline' },
 });

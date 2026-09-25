@@ -40,6 +40,35 @@ const TOKEN = process.env.PIPELINE_TOKEN || process.env.GENIE_PIPELINE_TOKEN || 
 const WEB_TOKEN = process.env.WEB_PIPELINE_TOKEN || env.WEB_PIPELINE_TOKEN || null;
 const PORT = Number(process.env.PORT || env.PIPELINE_PORT || 8787);
 const MAX_VIDEO_REQUESTS_PER_DAY = Number(process.env.MAX_VIDEO_REQUESTS_PER_DAY ?? env.MAX_VIDEO_REQUESTS_PER_DAY ?? 6);
+// Google sign-in (Supabase Auth). When the Supabase project is configured,
+// asking needs a signed-in user: the app sends its session as a Bearer token
+// and we confirm it with Supabase before spending anything. Each person gets
+// MAX_QUESTIONS_PER_USER_PER_DAY new questions a day.
+const SUPABASE_URL = (process.env.SUPABASE_URL || env.SUPABASE_URL || env.EXPO_PUBLIC_SUPABASE_URL || '').replace(/\/$/, '');
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || env.SUPABASE_ANON_KEY || env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
+// Same switch as the app: login is enforced once Google's client ID is set.
+const REQUIRE_LOGIN = Boolean(SUPABASE_URL && SUPABASE_KEY && (process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID || env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID));
+const MAX_QUESTIONS_PER_USER_PER_DAY = Number(process.env.MAX_QUESTIONS_PER_USER_PER_DAY ?? env.MAX_QUESTIONS_PER_USER_PER_DAY ?? 10);
+const verified = new Map(); // token → { user, until }
+
+async function userFor(req) {
+  const auth = String(req.headers.authorization || '');
+  const token = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  if (!token) return null;
+  const hit = verified.get(token);
+  if (hit && hit.until > Date.now()) return hit.user;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, { headers: { apikey: SUPABASE_KEY, authorization: `Bearer ${token}` } });
+    if (!res.ok) return null;
+    const u = await res.json();
+    const user = { id: u.id, email: u.email ?? null };
+    verified.set(token, { user, until: Date.now() + 5 * 60 * 1000 });
+    return user;
+  } catch {
+    return null;
+  }
+}
+
 // Spend guard for the public web build: its new questions per UTC day.
 const MAX_QUESTIONS_PER_DAY = Number(process.env.MAX_QUESTIONS_PER_DAY ?? env.MAX_QUESTIONS_PER_DAY ?? 0) || Infinity;
 const FRESH_DAYS = Number(process.env.FRESH_DAYS || env.FRESH_DAYS || 7);
@@ -178,14 +207,14 @@ async function run(job) {
 // ── HTTP ─────────────────────────────────────────────────────────────────────
 const CORS = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'content-type, x-pipeline-token',
+  'Access-Control-Allow-Headers': 'content-type, x-pipeline-token, authorization',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
 };
 const send = (res, status, body) => {
   res.writeHead(status, { ...CORS, 'content-type': 'application/json' });
   res.end(JSON.stringify(body));
 };
-const publicView = ({ research, intelligence, media_candidates, ...j }) => ({
+const publicView = ({ research, intelligence, media_candidates, user_id, ...j }) => ({
   ...j,
   gate: research?.gate ?? null,
   story: intelligence?.story ?? null,
@@ -230,6 +259,15 @@ const server = http.createServer(async (req, res) => {
     const prompt = String(input.prompt || '').trim();
     if (prompt.length < 3 || prompt.length > 500) return send(res, 400, { error: 'Question must be 3–500 characters.' });
     const today = new Date().toISOString().slice(0, 10);
+    let user = null;
+    if (REQUIRE_LOGIN) {
+      user = await userFor(req);
+      if (!user) return send(res, 401, { error: 'Sign in with Google to make briefings.' });
+      const mine = [...jobs.values()].filter((j) => j.user_id === user.id && j.created_at?.startsWith(today)).length;
+      if (mine >= MAX_QUESTIONS_PER_USER_PER_DAY) {
+        return send(res, 429, { error: `You’ve made ${MAX_QUESTIONS_PER_USER_PER_DAY} briefings today — come back tomorrow for more.` });
+      }
+    }
     const asked = [...jobs.values()].filter((j) => j.via === 'web' && j.created_at?.startsWith(today)).length;
     if (via === 'web' && asked >= MAX_QUESTIONS_PER_DAY) {
       return send(res, 429, { error: `Genie has answered its ${MAX_QUESTIONS_PER_DAY} questions for today. Try again tomorrow.` });
@@ -238,6 +276,7 @@ const server = http.createServer(async (req, res) => {
     const job = {
       id: randomUUID(),
       via,
+      user_id: user?.id ?? null,
       news_id: String(input.newsId || ''),
       mode: input.mode === 'new' ? 'new' : 'append',
       prompt,

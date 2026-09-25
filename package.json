@@ -6,6 +6,7 @@
     "@expo/metro-runtime": "~57.0.16",
     "@lottiefiles/dotlottie-react": "^0.13.5",
     "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-native-google-signin/google-signin": "^16.1.5",
     "@supabase/supabase-js": "^2.109.0",
     "expo": "~57.0.25",
     "expo-asset": "~57.0.18",

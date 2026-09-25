@@ -1,17 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, StyleSheet, Platform, Animated } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import SafeScreen from './src/components/SafeScreen';
-import { Colors, FontAssets, Space } from './src/brand';
+import { Colors, FontAssets, Space, Motion, useReducedMotion } from './src/brand';
 import FeedScreen from './src/features/feed/FeedScreen';
 import EmptyFeed from './src/features/feed/EmptyFeed';
 import Toast from './src/features/feed/Toast';
 import VoiceComposer, { useComposerTop } from './src/features/composer/VoiceComposer';
 import NewsListSheet from './src/features/news/NewsListSheet';
 import IntroScreen from './src/features/intro/IntroScreen';
+import AuthSheet from './src/features/auth/AuthSheet';
+import { useSession, authConfigured, signOut } from './src/lib/auth';
 import { setFeedHeld } from './src/features/composer/micSignal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NEWS } from './src/data/stories';
@@ -79,6 +81,36 @@ const STARTER_NEWS = mergeLibrary(
 ).next.map((n) => ({ ...n, featured: true }));
 
 function Shell() {
+  // Making briefings needs a Google account (watching doesn't). An action
+  // tried while signed out waits here, opens the sign-in sheet, and runs as
+  // soon as a session arrives. Without Supabase configured, nothing is gated.
+  const { session } = useSession();
+  const [authOpen, setAuthOpen] = useState(false);
+  const pending = useRef(null);
+  const requireAuth = useCallback(
+    (action) => {
+      if (!authConfigured || session) {
+        action();
+        return true;
+      }
+      pending.current = action;
+      setAuthOpen(true);
+      return false;
+    },
+    [session]
+  );
+  useEffect(() => {
+    if (!session) return;
+    setAuthOpen(false);
+    const run = pending.current;
+    pending.current = null;
+    if (run) setTimeout(run, 250); // let the sheet get out of the way first
+  }, [session]);
+  const closeAuth = useCallback(() => {
+    pending.current = null;
+    setAuthOpen(false);
+  }, []);
+
   const [news, setNews] = useState(STARTER_NEWS);
   const newsRef = useRef(news);
   newsRef.current = news;
@@ -103,15 +135,23 @@ function Shell() {
   // own pill instead of adding to the news on screen. Dismissing the field
   // without sending drops the mode.
   const createMode = useRef(false);
-  const onCreate = useCallback(() => {
-    createMode.current = true;
-    composer.current?.openCreate();
-  }, []);
+  const onCreate = useCallback(
+    () =>
+      requireAuth(() => {
+        createMode.current = true;
+        composer.current?.openCreate();
+      }),
+    [requireAuth]
+  );
   // The empty feed's "Type instead": same new-news mode, keyboard first.
-  const onCreateTyping = useCallback(() => {
-    createMode.current = true;
-    composer.current?.openKeyboard('What news should we explain?');
-  }, []);
+  const onCreateTyping = useCallback(
+    () =>
+      requireAuth(() => {
+        createMode.current = true;
+        composer.current?.openKeyboard('What news should we explain?');
+      }),
+    [requireAuth]
+  );
   const onKeyboardClose = useCallback(() => {
     createMode.current = false;
   }, []);
@@ -207,10 +247,14 @@ function Shell() {
   }, [follow]);
 
   // "No new info" card → tapping a suggested topic starts it as new news.
-  const onSuggest = useCallback((topic) => {
-    createMode.current = true;
-    onAskRef.current?.(topic);
-  }, []);
+  const onSuggest = useCallback(
+    (topic) =>
+      requireAuth(() => {
+        createMode.current = true;
+        onAskRef.current?.(topic);
+      }),
+    [requireAuth]
+  );
   const onAskRef = useRef(null);
 
   // A question becomes a new, researching story at the end of the current
@@ -264,6 +308,7 @@ function Shell() {
         onList={() => setListOpen(true)}
         onKeyboardClose={onKeyboardClose}
         idleHidden={!news.length}
+        beforeAsk={requireAuth}
       />
       <NewsListSheet
         visible={listOpen}
@@ -275,7 +320,11 @@ function Shell() {
         selectedId={selectedNewsId}
         onSelect={(id) => feed.current?.select(id)}
         onClose={() => setListOpen(false)}
+        session={authConfigured ? session : undefined}
+        onSignIn={() => requireAuth(() => {})}
+        onSignOut={signOut}
       />
+      <AuthSheet visible={authOpen} onClose={closeAuth} />
     </SafeScreen>
   );
 }
@@ -301,6 +350,21 @@ function useIntro() {
 export default function App() {
   const [fontsLoaded] = useFonts(FontAssets);
   const [intro, startApp, finishIntro] = useIntro();
+  const reduced = useReducedMotion();
+  // The feed's half of the welcome hand-off: it settles from 0.96 and fades
+  // in (320ms, ease-out) while the welcome dissolves forward over it.
+  const reveal = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (intro === 'done') reveal.setValue(1);
+    if (intro === 'leaving') {
+      Animated.timing(reveal, { toValue: 1, duration: 320, easing: Motion.ease.out, useNativeDriver: true }).start();
+    }
+  }, [intro, reveal]);
+  const revealStyle = {
+    flex: 1,
+    opacity: reveal,
+    transform: reduced ? [] : [{ scale: reveal.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1] }) }],
+  };
   // The feed loads behind the welcome (so Get started is instant) but holds
   // still — no video, narration or countdown — until it's dismissed.
   const feedReady = fontsLoaded && intro !== 'unknown';
@@ -314,7 +378,11 @@ export default function App() {
       {/* On desktop web, present the app in a phone-width column. */}
       <View style={styles.stage}>
         <View style={styles.device}>
-          {feedReady ? <Shell /> : null}
+          {feedReady ? (
+            <Animated.View style={revealStyle}>
+              <Shell />
+            </Animated.View>
+          ) : null}
           {/* Until we know whether to welcome, cover the feed so it can't flash. */}
           {fontsLoaded && (intro === 'show' || intro === 'leaving') ? (
             <IntroScreen onStart={startApp} onDone={finishIntro} />

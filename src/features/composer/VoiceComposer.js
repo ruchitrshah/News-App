@@ -109,7 +109,9 @@ const DEFAULT_PLACEHOLDER = 'Ask about this story';
 // `idleHidden`: tuck the voice bar away while idle (the empty feed has its
 // own, bigger voice button). It comes back for recording, the + screen and
 // typing.
-function VoiceComposer({ onSubmit, onList, onKeyboardClose, idleHidden = false }, ref) {
+// `beforeAsk(action)`: the app's sign-in gate. Starting to ask (mic or
+// keyboard) goes through it; it runs the action now, or after sign-in.
+function VoiceComposer({ onSubmit, onList, onKeyboardClose, idleHidden = false, beforeAsk }, ref) {
   const cardBottom = useCardBottom();
   const reducedMotion = useReducedMotion();
   const speech = useSpeechToText();
@@ -174,6 +176,8 @@ function VoiceComposer({ onSubmit, onList, onKeyboardClose, idleHidden = false }
   useEffect(() => {
     if (mode === 'keyboard') setTimeout(() => inputRef.current?.focus(), 50);
   }, [mode]);
+
+  const gated = (action) => () => (beforeAsk ? beforeAsk(action) : action());
 
   const startVoice = async () => {
     setSent(null);
@@ -344,7 +348,7 @@ function VoiceComposer({ onSubmit, onList, onKeyboardClose, idleHidden = false }
 
             <PressableGlass
               tone="dark"
-              onPress={recording ? sendVoice : startVoice}
+              onPress={recording ? sendVoice : gated(startVoice)}
               label={recording ? 'Send question' : 'Ask by voice'}
               style={styles.pill}
             >
@@ -352,7 +356,7 @@ function VoiceComposer({ onSubmit, onList, onKeyboardClose, idleHidden = false }
             </PressableGlass>
 
             {/* While the field is up, it is this button — hide the original. */}
-            <PressableGlass onPress={toKeyboard} label="Type instead" style={[styles.circle, fieldShown && styles.hidden]}>
+            <PressableGlass onPress={gated(toKeyboard)} label="Type instead" style={[styles.circle, fieldShown && styles.hidden]}>
               <Icon icon={KeyboardGlyph} size={22} strokeWidth={1.9} color={Colors.text.primary} />
             </PressableGlass>
           </Animated.View>

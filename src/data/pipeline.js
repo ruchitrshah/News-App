@@ -8,6 +8,7 @@
 //   subscribeRequest() → reports the request + its beats as they change
 //   beatsToStories()   → maps beats onto the feed's story shape
 import { supabase, ensureSession, backendConfigured as supabaseConfigured } from '../lib/supabase';
+import { getAccessToken } from '../lib/auth';
 
 const LOCAL_URL = (process.env.EXPO_PUBLIC_PIPELINE_URL || '').replace(/\/$/, '');
 const LOCAL_TOKEN = process.env.EXPO_PUBLIC_PIPELINE_TOKEN || '';
@@ -18,10 +19,16 @@ export const backendConfigured = local || supabaseConfigured;
 // ── Local pipeline server ────────────────────────────────────────────────────
 async function askLocal({ prompt, newsId, aboutStory, mode }) {
   let res;
+  // Signed in with Google? Send the session so the server can check who's asking.
+  const accessToken = await getAccessToken();
   try {
     res = await fetch(`${LOCAL_URL}/ask`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', 'x-pipeline-token': LOCAL_TOKEN },
+      headers: {
+        'content-type': 'application/json',
+        'x-pipeline-token': LOCAL_TOKEN,
+        ...(accessToken ? { authorization: `Bearer ${accessToken}` } : {}),
+      },
       body: JSON.stringify({ prompt, newsId, aboutStory, mode }),
     });
   } catch {

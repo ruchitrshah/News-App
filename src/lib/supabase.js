@@ -23,7 +23,8 @@ export const supabase = backendConfigured
         storage: Platform.OS === 'web' ? undefined : AsyncStorage,
         persistSession: true,
         autoRefreshToken: true,
-        detectSessionInUrl: false,
+        // Web signs in with Google by redirect; pick the session up from the URL.
+        detectSessionInUrl: Platform.OS === 'web',
       },
     })
   : null;

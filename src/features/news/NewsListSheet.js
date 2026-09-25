@@ -19,7 +19,7 @@
 //   press  rows scale to 0.98
 //   reduced motion: fades only, no travel, no stagger
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Image, Pressable, ScrollView, StyleSheet, Animated, BackHandler } from 'react-native';
+import { View, Text, Image, Pressable, ScrollView, StyleSheet, Animated, BackHandler, Alert, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Check, ChevronLeft, Plus } from 'lucide';
 
@@ -145,7 +145,43 @@ function Row({ item, index, open, selected, onPress, reduced }) {
   );
 }
 
-export default function NewsListSheet({ visible, news, selectedId, onSelect, onClose, onCreate }) {
+// Account, top right: your initial when signed in (tap to sign out), or
+// "Sign in". `session === undefined` means sign-in isn't set up; show neither.
+function Account({ session, onSignIn, onSignOut }) {
+  if (session === undefined) return <View style={styles.headerSpacer} />;
+  if (!session) {
+    return (
+      <Pressable onPress={onSignIn} hitSlop={8} accessibilityRole="button" style={({ pressed }) => [styles.signIn, pressed && styles.backPressed]}>
+        <Text style={styles.signInText}>Sign in</Text>
+      </Pressable>
+    );
+  }
+  const name = session.user?.user_metadata?.full_name || session.user?.email || 'Account';
+  const confirmOut = () => {
+    const msg = `Signed in as ${session.user?.email || name}. Sign out?`;
+    if (Platform.OS === 'web') {
+      if (window.confirm(msg)) onSignOut?.();
+      return;
+    }
+    Alert.alert('Sign out', msg, [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Sign out', style: 'destructive', onPress: () => onSignOut?.() },
+    ]);
+  };
+  return (
+    <Pressable
+      onPress={confirmOut}
+      hitSlop={8}
+      accessibilityRole="button"
+      accessibilityLabel={`Account: ${name}`}
+      style={({ pressed }) => [styles.avatar, pressed && styles.backPressed]}
+    >
+      <Text style={styles.avatarText}>{name.trim()[0]?.toUpperCase() || '?'}</Text>
+    </Pressable>
+  );
+}
+
+export default function NewsListSheet({ visible, news, selectedId, onSelect, onClose, onCreate, session, onSignIn, onSignOut }) {
   const reduced = useReducedMotion();
   const bottom = useBottomInset(Space[16]);
   const insets = useSafeAreaInsets();
@@ -231,7 +267,7 @@ export default function NewsListSheet({ visible, news, selectedId, onSelect, onC
         <Text style={styles.title} accessibilityRole="header">
           News
         </Text>
-        <View style={styles.headerSpacer} />
+        <Account session={session} onSignIn={onSignIn} onSignOut={onSignOut} />
       </View>
 
       {news.length ? (
@@ -322,6 +358,17 @@ const styles = StyleSheet.create({
   backPressed: { transform: [{ scale: Motion.pressScale }] },
   title: { ...TITLE, flex: 1, textAlign: 'center', color: Colors.text.primary },
   headerSpacer: { width: 44 },
+  avatar: {
+    width: 44,
+    height: 44,
+    borderRadius: Radius.full,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.text.primary,
+  },
+  avatarText: { ...BODY, fontFamily: FontFamilies.demi, color: Colors.text.onDark },
+  signIn: { minWidth: 44, height: 44, alignItems: 'flex-end', justifyContent: 'center' },
+  signInText: { ...BODY, fontFamily: FontFamilies.demi, color: Colors.text.primary },
 
   list: { flex: 1 },
   listContent: { paddingHorizontal: Space[12], gap: Space[4] },
