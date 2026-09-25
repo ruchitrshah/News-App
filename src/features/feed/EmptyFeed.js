@@ -13,7 +13,7 @@ import { CARD, BAR_TOP_IN_CARD, useCardBottom } from '../layout';
 import NewsRail from './NewsRail';
 import { TITLE, BODY } from './type';
 
-export default function EmptyFeed({ loading, onCreate }) {
+export default function EmptyFeed({ loading, connected = true, onCreate }) {
   const cardBottom = useCardBottom();
   return (
     <View style={styles.screen}>
@@ -28,7 +28,11 @@ export default function EmptyFeed({ loading, onCreate }) {
               <Text style={styles.title} accessibilityRole="header">
                 No briefings yet
               </Text>
-              <Text style={styles.body1}>Tap + or the mic and say a topic — Genie will research it and make your first briefing.</Text>
+              <Text style={styles.body1}>
+                {connected
+                  ? 'Tap + or the mic and say a topic — Genie will research it and make your first briefing.'
+                  : 'This version isn’t connected to a briefing server, so it can’t make stories. Run Genie with its server to try it — see the README.'}
+              </Text>
             </>
           )}
         </View>

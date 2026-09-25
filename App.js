@@ -191,6 +191,13 @@ function Shell() {
   // segment (or pill) is the confirmation; no toast.
   const onAsk = useCallback(
     (text) => {
+      // No pipeline server configured (e.g. the hosted web demo): say so,
+      // instead of adding a pill that would sit on "Researching…" forever.
+      if (!backendConfigured) {
+        createMode.current = false;
+        showToast('Genie needs its briefing server to make new stories. See the README to run it.');
+        return;
+      }
       // With no news on screen, any question starts a new news item.
       if (createMode.current || !onScreen.current.newsId) {
         createMode.current = false;
@@ -206,7 +213,7 @@ function Shell() {
       setNews((prev) => prev.map((n) => (n.id === newsId ? { ...n, stories: [...n.stories, placeholder] } : n)));
       runPipeline({ text, newsId, placeholder, aboutStory: story?.headline });
     },
-    [runPipeline]
+    [runPipeline, showToast]
   );
   onAskRef.current = onAsk;
 
@@ -215,7 +222,7 @@ function Shell() {
       {news.length ? (
         <FeedScreen ref={feed} news={news} onActiveStory={onActiveStory} onCreate={onCreate} onSuggest={onSuggest} />
       ) : (
-        <EmptyFeed loading={!libraryLoaded} onCreate={onCreate} />
+        <EmptyFeed loading={!libraryLoaded} connected={backendConfigured} onCreate={onCreate} />
       )}
       <Toast message={toast} onHide={hideToast} bottom={composerTop + Space[12]} />
       <VoiceComposer
