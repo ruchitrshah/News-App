@@ -153,6 +153,9 @@ const styles = StyleSheet.create({
     // Room for the pill shadows, which a ScrollView would otherwise clip.
     paddingTop: Space[16],
     paddingBottom: Space[16],
+    // Keep the rail pill-height even with no pills, so the pinned + (centred
+    // on the rail) isn't clipped when the feed is empty.
+    minHeight: PILL_H + Space[16] * 2,
     gap: Space[10],
   },
   pill: {
