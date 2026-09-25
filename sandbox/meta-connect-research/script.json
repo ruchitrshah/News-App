@@ -1,0 +1,123 @@
+{
+  "prompt": "Meta Connect 2026 announcements",
+  "source": "https://thenextweb.com/news/meta-vr-glasses-hearing-aid-connect-2026",
+  "insights": {
+    "headline": "Meta Connect 2026: new glasses, a lighter headset, and AI that shops for you",
+    "label": "Meta Connect",
+    "key_facts": [
+      "Meta VR Glasses is a tethered headset priced at $1,299.99, releasing next spring",
+      "Ray-Ban Meta Gen 3 glasses start at $449 in the US, $70 more than the predecessor's original launch price",
+      "Meta's supported smart glasses are now FDA-certified hearing aids for mild to moderate hearing loss, unlocked with a one-time $149 purchase",
+      "Meta held its Connect 2026 keynote at company headquarters in Menlo Park, California",
+      "Ray-Ban Meta Audio glasses are available for pre-order at $349 and ship October 13",
+      "Meta is integrating Muse AI shopping with retailers including Walmart, Best Buy, American Eagle Outfitters, DICK'S Sporting Goods and Instacart for making purchases on your behalf",
+      "Meta VR Glasses weighs about 100 grams, roughly one-fifth the weight of Quest 3 glasses",
+      "Meta VR Glasses runs on Qualcomm's Snapdragon Reality Elite chip via a tethered puck offering up to three hours of continuous high-resolution media playback and 45W fast charging",
+      "Meta VR Glasses will have 75 games playable at launch using hand gestures, with support for Quest games via Touch Plus controllers and Xbox Cloud Gaming",
+      "Ray-Ban Meta Gen 3 features a single 12MP camera, 3K Ultra HD video, a six-microphone array, and up to nine hours of battery life",
+      "Ray-Ban Meta Audio, Meta's first camera-free glasses, weigh 43g and come in 23 frame and lens combinations",
+      "Meta VR Glasses is the first VR device to receive IMAX Enhanced certification and supports Dolby Vision and Dolby Atmos"
+    ],
+    "what_changed": "Meta held Connect 2026 on Sept 23, unveiling four new devices (Ray-Ban Meta Gen 3, Ray-Ban Meta Audio, Meta VR Glasses, Muse Charm), new AI shopping integrations via Muse with Walmart/Instacart, FDA-certified hearing aid functionality for smart glasses, a 'hologram' video call feature, and a Quest/VR gaming ecosystem update including Beat Saber's biggest overhaul."
+  },
+  "beats": [
+    {
+      "headline": "Meta's big reveal",
+      "narration": "At Menlo Park headquarters, Meta unveiled a wave of new glasses and VR hardware for 2026.",
+      "caption_highlight": "2026",
+      "visual_prompt": "Wide establishing shot of a modern tech campus at dusk, glowing windows, slow drone push-in, sleek corporate mood; vertical 9:16",
+      "fact_refs": [
+        3
+      ],
+      "sources": [
+        "https://insideai.news/news/ai-hardware-infrastructure/meta-ai-glasses-muse/12768/"
+      ]
+    },
+    {
+      "headline": "Featherweight VR headset",
+      "narration": "The new Meta VR Glasses weigh just 100 grams, one-fifth the weight of Quest 3.",
+      "caption_highlight": "100 grams",
+      "visual_prompt": "Close-up of slim futuristic VR glasses resting on a table, hand lifting them lightly, studio lighting; vertical 9:16",
+      "fact_refs": [
+        6
+      ],
+      "sources": [
+        "https://www.medianama.com/2026/09/223-meta-connect-vr-glasses-muse-ai-keychain/"
+      ]
+    },
+    {
+      "headline": "Power in the puck",
+      "narration": "A tethered puck runs Snapdragon Reality Elite, giving three hours of high-res playback with fast charging.",
+      "caption_highlight": "3 hours",
+      "visual_prompt": "Macro shot of a small cylindrical tech puck connected by thin cable to glasses, glowing charging light, dark background; vertical 9:16",
+      "fact_refs": [
+        7
+      ],
+      "sources": [
+        "https://dataconomy.com/2026/09/24/what-happened-at-meta-connect-2026/"
+      ]
+    },
+    {
+      "headline": "Cinema-grade certification",
+      "narration": "It's the first VR device certified IMAX Enhanced, supporting Dolby Vision and Dolby Atmos visuals.",
+      "caption_highlight": "IMAX Enhanced",
+      "visual_prompt": "Person wearing VR glasses immersed in glowing cinematic visuals, dark room, dramatic light rays; vertical 9:16",
+      "fact_refs": [
+        11
+      ],
+      "sources": [
+        "https://www.medianama.com/2026/09/223-meta-connect-vr-glasses-muse-ai-keychain/"
+      ]
+    },
+    {
+      "headline": "Gaming built in",
+      "narration": "75 games launch day one, playable by hand gesture, plus Quest and Xbox Cloud Gaming support.",
+      "caption_highlight": "75 games",
+      "visual_prompt": "Hands gesturing in mid-air while wearing VR glasses, floating game icons around them, energetic motion blur; vertical 9:16",
+      "fact_refs": [
+        8
+      ],
+      "sources": [
+        "https://dataconomy.com/2026/09/24/what-happened-at-meta-connect-2026/"
+      ]
+    },
+    {
+      "headline": "Smarter Ray-Bans, higher price",
+      "narration": "Ray-Ban Meta Gen 3 starts at $449, $70 more, now with 3K video and nine-hour battery.",
+      "caption_highlight": "$449",
+      "visual_prompt": "Stylish sunglasses on a reflective surface, camera slowly rotating around them, soft studio light; vertical 9:16",
+      "fact_refs": [
+        1,
+        9
+      ],
+      "sources": [
+        "https://thepcenthusiast.com/ray-ban-meta-gen-3-price-features/",
+        "https://dymesty.com/blogs/articles/meta-ray-ban-gen-3-connect-2026"
+      ]
+    },
+    {
+      "headline": "Glasses that hear for you",
+      "narration": "Meta's smart glasses are now FDA-certified hearing aids, unlocked with a one-time $149 purchase.",
+      "caption_highlight": "$149",
+      "visual_prompt": "Elderly-looking silhouette adjusting glasses, gentle sound waves visualized around ears, warm indoor lighting; vertical 9:16",
+      "fact_refs": [
+        2
+      ],
+      "sources": [
+        "https://thenextweb.com/news/meta-vr-glasses-hearing-aid-connect-2026"
+      ]
+    },
+    {
+      "headline": "AI that shops for you",
+      "narration": "Muse AI now buys from Walmart, Best Buy, American Eagle, DICK'S, and Instacart on your behalf.",
+      "caption_highlight": "5 retailers",
+      "visual_prompt": "Smart glasses reflecting a glowing shopping app interface, hand reaching toward a virtual checkout button; vertical 9:16",
+      "fact_refs": [
+        5
+      ],
+      "sources": [
+        "https://insideai.news/news/ai-hardware-infrastructure/meta-ai-glasses-muse/12768/"
+      ]
+    }
+  ]
+}

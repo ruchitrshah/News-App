@@ -1,0 +1,26 @@
+{
+  "topic": "Federal Reserve September 2026 rate decision",
+  "aboutStory": null,
+  "today": "2026-09-25",
+  "window_days": 7,
+  "cost": 0.081084,
+  "scout": "## Yes — genuinely new, significant news within the last 7 days\n\nThis is a live, major story from **September 16, 2026** (9 days ago, just outside the strict 7-day window but the most recent and highly relevant development, with continued analysis/coverage since):\n\n**The headline decision:** The Federal Reserve on Wednesday approved its first interest rate hike since 2023 and indicated another to come, raising its benchmark interest rate by 25 basis points to a target range of 3.75%-4%. On September 16, 2026, the Federal Open Market Committee (FOMC) voted unanimously (12–0) to increase the target range for the federal funds rate by 25 basis points to 3.75%–4.00%.\n\n**Why it's notable/new:**\n- This reverses the recent easing trend — the Fed had held rates steady until September 2025, then issued three consecutive cuts to bring the rate to a target range of 3.50%-3.75%, before raising rates again in September 2026.\n- The rationale was tied to higher fuel costs from the Iran war and lingering tariff impacts, with officials weighing the cost of continuing to look through price increases amid a stabilizing labor market.\n\n**New forward guidance (dot plot) — a genuinely new data point:**\nUpdated projections showed a strong majority of officials think another hike is possible later this year — 16 of 18 participants expected another rate increase, with four seeing two more as possible, while two expected the committee to stop at one hike. The dot plot projected a target range of the fed funds rate to be 4.00% to 4.25% at yearend 2026 and 2027.\n\n**Inflation projections were also revised up:** Officials nudged up their expectations for inflation this year, seeing headline PCE at 3.7% and core PCE at 3.4%, both 0.1 percentage point higher than the last update.\n\n**Technical implementation details (also dated Sept 16-17, 2026):** The Federal Reserve System voted unanimously to raise the interest rate paid on reserve balances to 3.90 percent, effective September 17, 2026.\n\n**Market reaction:** The S&P 500 rose after Wednesday's announcement, while Treasury yields have been surging.\n\n### Bottom line for the app\nThis is a strong candidate for a short-form explainer — it's a rate **hike** (not a cut), the first since 2023, a reversal of the prior cutting cycle, with updated dot-plot signaling more hikes possibly coming. Sources: [CNBC](https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html), [Federal Reserve official release](https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a1.htm), [TradingEconomics](https://tradingeconomics.com/united-states/interest-rate), [Bondsavvy dot-plot analysis](https://www.bondsavvy.com/fixed-income-investments-blog/fed-dot-plot). The event itself is 9 days old (just past the strict 7-day cutoff), but it remains the domin",
+  "gate": {
+    "verdict": "no_new",
+    "what_changed": "The Fed's rate hike decision occurred on September 16, 2026, which is 9 days before the 2026-09-25 reference date, falling just outside the strict 7-day freshness window. No new developments since then are cited.",
+    "freshest_update": "2026-09-16",
+    "reason": "While significant, the core event is outside the 7-day window and no subsequent fresh developments (e.g., new Fed commentary, data revisions, market-moving follow-ups) within the last 7 days are documented.",
+    "suggestions": [
+      "Fed officials speeches reaction",
+      "Treasury yields surge",
+      "Inflation data October forecast"
+    ]
+  },
+  "status": "no_new",
+  "message": "No new information on Federal Reserve September 2026 rate decision right now — try another topic.",
+  "suggestions": [
+    "Fed officials speeches reaction",
+    "Treasury yields surge",
+    "Inflation data October forecast"
+  ]
+}

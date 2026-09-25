@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Genie sandbox — Meta Connect</title>
+<style>
+  :root { --ink:#111827; --page:#fff; --soft:#f3f4f6; --muted:#6b7280; }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; background:var(--soft); font-family: -apple-system, "SF Pro Text", Inter, system-ui, sans-serif; color:var(--ink);
+         display:flex; gap:32px; align-items:flex-start; justify-content:center; padding:24px 16px; flex-wrap:wrap; }
+  .phone { width:min(390px, 100%); aspect-ratio: 9/16; position:relative; border-radius:18px; overflow:hidden; background:#0b0f17;
+           box-shadow: 0 20px 60px rgba(16,24,40,.18); }
+  video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .scrim { position:absolute; left:0; right:0; bottom:0; height:55%; background:linear-gradient(transparent, rgba(0,0,0,.72)); pointer-events:none; }
+  .bar { position:absolute; top:12px; left:20px; right:20px; display:flex; gap:6px; z-index:2; }
+  .seg { flex:1; height:3px; border-radius:2px; background:rgba(255,255,255,.35); overflow:hidden; }
+  .seg i { display:block; height:100%; width:0; background:#fff; }
+  .cap { position:absolute; left:20px; right:20px; bottom:28px; font-size:16px; line-height:22px; font-weight:500; color:#fff;
+         text-shadow:0 1px 4px rgba(0,0,0,.45); min-height:44px; display:flex; align-items:flex-end; }
+  .cap span { animation: in 170ms cubic-bezier(.23,1,.32,1); }
+  @keyframes in { from { opacity:0; transform: translateY(4px) } to { opacity:1; transform:none } }
+  @media (prefers-reduced-motion: reduce) { .cap span { animation: fade 170ms ease-out } @keyframes fade { from { opacity:0 } } }
+  .tap { position:absolute; top:0; bottom:0; width:35%; z-index:1; cursor:pointer; }
+  .tap.l { left:0 } .tap.r { right:0 }
+  .start { position:absolute; inset:0; z-index:3; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.35);
+           color:#fff; font-weight:600; font-size:15px; cursor:pointer; border:0; }
+  .side { width:min(420px, 100%); }
+  .side h1 { font-size:20px; margin:4px 0 4px; } .side p { color:var(--muted); font-size:13px; margin:0 0 16px; }
+  .side ol { padding:0; margin:0; list-style:none; display:grid; gap:8px; }
+  .side li { background:#fff; border-radius:12px; padding:10px 12px; font-size:13px; line-height:18px; cursor:pointer; border:1px solid #e5e7eb; }
+  .side li.on { border-color: var(--ink); }
+  .side li b { display:block; font-size:14px; margin-bottom:2px; }
+  .side small { color:var(--muted); }
+</style>
+</head>
+<body>
+  <div class="phone" id="phone">
+    <video id="v" playsinline preload="auto"></video>
+    <div class="scrim"></div>
+    <div class="bar" id="bar"></div>
+    <div class="cap" id="cap"></div>
+    <div class="tap l" id="prev" aria-label="Previous"></div>
+    <div class="tap r" id="next" aria-label="Next"></div>
+    <button class="start" id="start">Tap to play with sound</button>
+  </div>
+  <div class="side">
+    <h1>Meta goes all-in on Muse, its personal AI agent, at Connect 2026</h1>
+    <p>Source: <a href="https://www.meta.com/blog/meta-connect-2026-everything-we-announced/" target="_blank" rel="noreferrer">www.meta.com</a> · 8 scenes · voice ElevenLabs Turbo 2.5 · video Veo 3.1 Lite (fal)</p>
+    <ol id="list"></ol>
+  </div>
+<script>
+  const BEATS = [{"headline":"Muse takes center stage","video_url":"https://v3b.fal.media/files/b/0aabc83d/MN36G8822bT-wZVYuK6iD_combined_output.mp4","captions":[{"start":0.104,"end":2.972,"text":"At Connect 2026, Meta put one"},{"start":2.972,"end":5.097,"text":"thing at the center of everything:"},{"start":5.097,"end":7.581,"text":"Muse, its personal AI agent."}],"voice_s":7.58,"duration_s":8},{"headline":"Real-time voice","video_url":"https://v3b.fal.media/files/b/0aabc844/NOAuLIJN71PsurD3HePUz_combined_output.mp4","captions":[{"start":0.046,"end":1.579,"text":"Muse now talks back in real"},{"start":1.579,"end":3.425,"text":"time, and keeps working on your"},{"start":3.425,"end":4.783,"text":"tasks in the background."}],"voice_s":4.78,"duration_s":6},{"headline":"Muse on your glasses","video_url":"https://v3b.fal.media/files/b/0aabc844/oMW5KRuI96ZL1sZLNr5EP_combined_output.mp4","captions":[{"start":0.023,"end":2.299,"text":"On AI glasses, just say its"},{"start":2.299,"end":3.831,"text":"name, and it can act on"},{"start":3.831,"end":5.05,"text":"whatever you're looking at."}],"voice_s":5.05,"duration_s":6},{"headline":"It runs your Mac","video_url":"https://v3b.fal.media/files/b/0aabc843/Mi9bT2Qmm1etrZXP1Zm4u_combined_output.mp4","captions":[{"start":0.046,"end":1.881,"text":"On a Mac, Muse can now"},{"start":1.881,"end":4.203,"text":"operate any app, even while you're"},{"start":4.203,"end":5.248,"text":"away from your desk."}],"voice_s":5.25,"duration_s":6},{"headline":"Shopping, handled","video_url":"https://v3b.fal.media/files/b/0aabc844/g7u1qJa7CPXOZpIC4mCKX_combined_output.mp4","captions":[{"start":0.023,"end":1.254,"text":"It can shop and pay for"},{"start":1.254,"end":5.027,"text":"you, with Walmart, Best Buy, Sephora,"},{"start":5.027,"end":7.558,"text":"Shop Pay and PayPal on board."}],"voice_s":7.56,"duration_s":8},{"headline":"Lighter, smarter glasses","video_url":"https://v3b.fal.media/files/b/0aabc84a/MEhv9ieOlOjEn7CD1kI36_combined_output.mp4","captions":[{"start":0.046,"end":2.844,"text":"New Ray-Ban Meta glasses are slimmer,"},{"start":2.844,"end":4.725,"text":"add an action button, and get"},{"start":4.725,"end":6.432,"text":"the longest battery yet."}],"voice_s":6.43,"duration_s":8},{"headline":"VR, five times lighter","video_url":"https://v3b.fal.media/files/b/0aabc84a/oTvlo6ZTLmdgzNS4UmD_E_combined_output.mp4","captions":[{"start":0.046,"end":2.09,"text":"Meta's new VR Glasses weigh about"},{"start":2.09,"end":4.47,"text":"100 grams, five times lighter than"},{"start":4.47,"end":7.384,"text":"Quest 3, for $1,299."}],"voice_s":7.38,"duration_s":8},{"headline":"Why it matters","video_url":"https://v3b.fal.media/files/b/0aabc84b/MfmzPt07QXJpczGRYXvJ-_combined_output.mp4","captions":[{"start":0.046,"end":2.415,"text":"Why it matters: Meta is betting"},{"start":2.415,"end":4.261,"text":"your next computer is an AI"},{"start":4.261,"end":5.747,"text":"agent you talk to and wear."}],"voice_s":5.75,"duration_s":8}];
+  const v = document.getElementById('v'), bar = document.getElementById('bar'), cap = document.getElementById('cap'), list = document.getElementById('list');
+  let i = 0, lastLine = -1;
+  BEATS.forEach((b, k) => {
+    bar.insertAdjacentHTML('beforeend', '<div class="seg"><i></i></div>');
+    const li = document.createElement('li');
+    li.innerHTML = '<b>' + (k + 1) + '. ' + b.headline + '</b>' + b.captions.map(c => c.text).join(' ') +
+      '<br><small>voice ' + b.voice_s + 's · clip ' + b.duration_s + 's</small>';
+    li.onclick = () => go(k);
+    list.appendChild(li);
+  });
+  const segs = [...bar.querySelectorAll('.seg i')];
+  function go(k) {
+    i = (k + BEATS.length) % BEATS.length; lastLine = -1; cap.innerHTML = '';
+    v.src = BEATS[i].video_url; v.play().catch(() => {});
+    segs.forEach((s, n) => s.style.width = n < i ? '100%' : '0');
+    [...list.children].forEach((li, n) => li.classList.toggle('on', n === i));
+  }
+  v.addEventListener('timeupdate', () => {
+    const t = v.currentTime, b = BEATS[i];
+    segs[i].style.width = Math.min(100, (t / (v.duration || b.duration_s)) * 100) + '%';
+    let line = -1;
+    b.captions.forEach((c, n) => { if (t >= c.start) line = n; });
+    if (line !== lastLine) { lastLine = line; cap.innerHTML = line >= 0 ? '<span>' + b.captions[line].text + '</span>' : ''; }
+  });
+  v.addEventListener('ended', () => go(i + 1));
+  document.getElementById('next').onclick = () => go(i + 1);
+  document.getElementById('prev').onclick = () => go(i - 1);
+  document.getElementById('start').onclick = (e) => { e.currentTarget.remove(); v.muted = false; go(0); };
+  v.muted = true; v.src = BEATS[0].video_url; list.children[0].classList.add('on');
+</script>
+</body>
+</html>

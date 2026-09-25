@@ -1,0 +1,47 @@
+{
+  "name": "genie",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@expo/metro-runtime": "~57.0.16",
+    "@lottiefiles/dotlottie-react": "^0.13.5",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@supabase/supabase-js": "^2.109.0",
+    "expo": "~57.0.25",
+    "expo-audio": "~57.0.5",
+    "expo-blur": "~57.0.3",
+    "expo-dev-client": "~57.0.19",
+    "expo-font": "~57.0.4",
+    "expo-glass-effect": "~57.0.4",
+    "expo-haptics": "~57.0.3",
+    "expo-linear-gradient": "~57.0.2",
+    "expo-speech-recognition": "^57.1.0",
+    "expo-splash-screen": "~57.0.9",
+    "expo-status-bar": "~57.0.1",
+    "expo-video": "~57.0.5",
+    "lottie-react-native": "~7.3.8",
+    "lucide": "^1.48.0",
+    "morphicons": "^1.7.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-svg": "15.15.4",
+    "react-native-url-polyfill": "^4.0.0",
+    "react-native-web": "^0.21.2",
+    "react-native-webview": "13.16.1"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "pipeline": "node server/index.mjs"
+  },
+  "private": true,
+  "devDependencies": {
+    "@fal-ai/client": "^1.10.1",
+    "@types/react": "~19.2.4",
+    "typescript": "~6.0.3"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "prompt": "Meta Connect 2026 — everything Meta announced",
+  "source": "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/",
+  "published": "2026-09-23",
+  "insights": {
+    "headline": "Meta goes all-in on Muse, its personal AI agent, at Connect 2026",
+    "label": "Meta Connect",
+    "key_facts": [
+      "Muse is the centerpiece: real-time voice mode that keeps working on background tasks, with custom voices designed by description.",
+      "Muse comes to AI glasses (hands-free by name) and can act on what the wearer is looking at.",
+      "Muse for Mac gets computer use: it can operate any Mac app while the user is away.",
+      "New shopping and payment connectors: Walmart, Best Buy, Sephora, Ulta, Wayfair, Instacart, Shop Pay, PayPal; Expedia coming soon.",
+      "Ray-Ban Meta Gen 3: slimmer, action button, longest battery life of any Ray-Ban Meta.",
+      "Meta VR Glasses: about 100 grams (5x lighter than Quest 3), 5K micro-OLED, eye and hand tracking, $1,299.99, spring 2027.",
+      "FDA-cleared hearing assistance on AI glasses, $149.99, US later in 2026."
+    ],
+    "why_it_matters": "Meta is betting that the next computer is an AI agent you talk to and wear, not an app you open.",
+    "uncertainties": ["Muse Charm details come later in 2026.", "VR Glasses and Hologram features don't ship until spring 2027."]
+  },
+  "beats": [
+    {
+      "headline": "Muse takes center stage",
+      "narration": "At Connect 2026, Meta put one thing at the center of everything: Muse, its personal AI agent.",
+      "visual_prompt": "A vast dark keynote stage, a single glowing orb of soft blue light hovering above it, silhouetted audience in the foreground, slow cinematic push-in, volumetric light, vertical framing. No text, no logos."
+    },
+    {
+      "headline": "Real-time voice",
+      "narration": "Muse now talks back in real time, and keeps working on your tasks in the background.",
+      "visual_prompt": "Close-up of a smartphone lying on a wooden cafe table, a soft animated voice waveform glowing on its screen, warm morning light, shallow depth of field, gentle camera drift. No readable text, no logos."
+    },
+    {
+      "headline": "Muse on your glasses",
+      "narration": "On AI glasses, just say its name, and it can act on whatever you're looking at.",
+      "visual_prompt": "First-person view through stylish smart glasses walking down a sunny city street, a subtle translucent highlight appearing around a storefront, natural motion, bright daylight. No readable text, no logos."
+    },
+    {
+      "headline": "It runs your Mac",
+      "narration": "On a Mac, Muse can now operate any app, even while you're away from your desk.",
+      "visual_prompt": "An empty modern desk at dusk, a laptop screen glowing with windows opening and arranging themselves on their own, an empty chair pushed back, slow dolly-in, calm mood. No readable text, no logos."
+    },
+    {
+      "headline": "Shopping, handled",
+      "narration": "It can shop and pay for you, with Walmart, Best Buy, Sephora, Shop Pay and PayPal on board.",
+      "visual_prompt": "Colorful shopping bags and a payment card floating and slowly rotating in a soft pastel studio, gentle bounce, playful product-commercial lighting. No text, no logos, no brand names."
+    },
+    {
+      "headline": "Lighter, smarter glasses",
+      "narration": "New Ray-Ban Meta glasses are slimmer, add an action button, and get the longest battery yet.",
+      "visual_prompt": "A pair of sleek black smart glasses resting on a reflective surface, slow orbiting camera, crisp studio light, premium product shot. No text, no logos."
+    },
+    {
+      "headline": "VR, five times lighter",
+      "narration": "Meta's new VR Glasses weigh about 100 grams, five times lighter than Quest 3, for $1,299.",
+      "visual_prompt": "A person seen from behind on a sofa wearing lightweight goggles, several floating translucent virtual screens arranged around a cozy living room, soft evening light, slow push-in. No readable text, no logos."
+    },
+    {
+      "headline": "Why it matters",
+      "narration": "Why it matters: Meta is betting your next computer is an AI agent you talk to and wear.",
+      "visual_prompt": "Silhouette of a person wearing glasses on a rooftop at sunrise looking over a city skyline, warm golden light, slow cinematic pull-back, hopeful mood. No text, no logos."
+    }
+  ]
+}

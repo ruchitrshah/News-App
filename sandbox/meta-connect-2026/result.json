@@ -1,0 +1,920 @@
+{
+  "beats": {
+    "0": {
+      "idx": 0,
+      "headline": "Muse takes center stage",
+      "narration": "At Connect 2026, Meta put one thing at the center of everything: Muse, its personal AI agent.",
+      "duration_s": 8,
+      "voice_s": 7.58,
+      "video_url": "https://v3b.fal.media/files/b/0aabc83d/MN36G8822bT-wZVYuK6iD_combined_output.mp4",
+      "silent_video_url": "https://v3b.fal.media/files/b/0aabc838/gizCX3pDDrsDf9PsI9lzv_2372a0719a2b4254b481839d9b051ffe.mp4",
+      "audio_url": "https://v3b.fal.media/files/b/0aabc83d/ly8mOwovaDKqZVAUEB-pJ_output.mp3",
+      "words": [
+        {
+          "text": "At",
+          "start": 0.104,
+          "end": 0.255
+        },
+        {
+          "text": "Connect",
+          "start": 0.302,
+          "end": 0.615
+        },
+        {
+          "text": "2026,",
+          "start": 0.697,
+          "end": 1.881
+        },
+        {
+          "text": "Meta",
+          "start": 2.125,
+          "end": 2.368
+        },
+        {
+          "text": "put",
+          "start": 2.438,
+          "end": 2.589
+        },
+        {
+          "text": "one",
+          "start": 2.694,
+          "end": 2.937
+        },
+        {
+          "text": "thing",
+          "start": 2.972,
+          "end": 3.251
+        },
+        {
+          "text": "at",
+          "start": 3.297,
+          "end": 3.367
+        },
+        {
+          "text": "the",
+          "start": 3.402,
+          "end": 3.471
+        },
+        {
+          "text": "center",
+          "start": 3.518,
+          "end": 3.785
+        },
+        {
+          "text": "of",
+          "start": 3.831,
+          "end": 3.889
+        },
+        {
+          "text": "everything:",
+          "start": 3.994,
+          "end": 4.656
+        },
+        {
+          "text": "Muse,",
+          "start": 5.097,
+          "end": 5.666
+        },
+        {
+          "text": "its",
+          "start": 5.875,
+          "end": 6.026
+        },
+        {
+          "text": "personal",
+          "start": 6.095,
+          "end": 6.536
+        },
+        {
+          "text": "AI",
+          "start": 6.606,
+          "end": 6.978
+        },
+        {
+          "text": "agent.",
+          "start": 7.059,
+          "end": 7.581
+        }
+      ],
+      "captions": [
+        {
+          "start": 0.104,
+          "end": 2.972,
+          "text": "At Connect 2026, Meta put one"
+        },
+        {
+          "start": 2.972,
+          "end": 5.097,
+          "text": "thing at the center of everything:"
+        },
+        {
+          "start": 5.097,
+          "end": 7.581,
+          "text": "Muse, its personal AI agent."
+        }
+      ]
+    },
+    "1": {
+      "idx": 1,
+      "headline": "Real-time voice",
+      "narration": "Muse now talks back in real time, and keeps working on your tasks in the background.",
+      "duration_s": 6,
+      "voice_s": 4.78,
+      "video_url": "https://v3b.fal.media/files/b/0aabc844/NOAuLIJN71PsurD3HePUz_combined_output.mp4",
+      "silent_video_url": "https://v3b.fal.media/files/b/0aabc843/XmAZOlhu-6rPq79hqWVQA_ddaef4a38ba94e448c4027dea8e1a338.mp4",
+      "audio_url": "https://v3b.fal.media/files/b/0aabc83f/TooUSBKIJfnsBcut16ER4_output.mp3",
+      "words": [
+        {
+          "text": "Muse",
+          "start": 0.046,
+          "end": 0.406
+        },
+        {
+          "text": "now",
+          "start": 0.453,
+          "end": 0.604
+        },
+        {
+          "text": "talks",
+          "start": 0.673,
+          "end": 0.929
+        },
+        {
+          "text": "back",
+          "start": 0.975,
+          "end": 1.161
+        },
+        {
+          "text": "in",
+          "start": 1.207,
+          "end": 1.265
+        },
+        {
+          "text": "real",
+          "start": 1.324,
+          "end": 1.521
+        },
+        {
+          "text": "time,",
+          "start": 1.579,
+          "end": 2.113
+        },
+        {
+          "text": "and",
+          "start": 2.357,
+          "end": 2.496
+        },
+        {
+          "text": "keeps",
+          "start": 2.554,
+          "end": 2.786
+        },
+        {
+          "text": "working",
+          "start": 2.844,
+          "end": 3.123
+        },
+        {
+          "text": "on",
+          "start": 3.17,
+          "end": 3.239
+        },
+        {
+          "text": "your",
+          "start": 3.274,
+          "end": 3.39
+        },
+        {
+          "text": "tasks",
+          "start": 3.425,
+          "end": 3.82
+        },
+        {
+          "text": "in",
+          "start": 3.866,
+          "end": 3.936
+        },
+        {
+          "text": "the",
+          "start": 3.971,
+          "end": 4.04
+        },
+        {
+          "text": "background.",
+          "start": 4.075,
+          "end": 4.783
+        }
+      ],
+      "captions": [
+        {
+          "start": 0.046,
+          "end": 1.579,
+          "text": "Muse now talks back in real"
+        },
+        {
+          "start": 1.579,
+          "end": 3.425,
+          "text": "time, and keeps working on your"
+        },
+        {
+          "start": 3.425,
+          "end": 4.783,
+          "text": "tasks in the background."
+        }
+      ]
+    },
+    "2": {
+      "idx": 2,
+      "headline": "Muse on your glasses",
+      "narration": "On AI glasses, just say its name, and it can act on whatever you're looking at.",
+      "duration_s": 6,
+      "voice_s": 5.05,
+      "video_url": "https://v3b.fal.media/files/b/0aabc844/oMW5KRuI96ZL1sZLNr5EP_combined_output.mp4",
+      "silent_video_url": "https://v3b.fal.media/files/b/0aabc843/98ySN9kXXutuuUWIJgPkm_0351dd2b6aa94bc1b31db182d97e5718.mp4",
+      "audio_url": "https://v3b.fal.media/files/b/0aabc83f/It9ah3j1Ck6gqeAIqTv7b_output.mp3",
+      "words": [
+        {
+          "text": "On",
+          "start": 0.023,
+          "end": 0.174
+        },
+        {
+          "text": "AI",
+          "start": 0.232,
+          "end": 0.546
+        },
+        {
+          "text": "glasses,",
+          "start": 0.615,
+          "end": 1.312
+        },
+        {
+          "text": "just",
+          "start": 1.637,
+          "end": 1.858
+        },
+        {
+          "text": "say",
+          "start": 1.904,
+          "end": 2.067
+        },
+        {
+          "text": "its",
+          "start": 2.113,
+          "end": 2.241
+        },
+        {
+          "text": "name,",
+          "start": 2.299,
+          "end": 2.67
+        },
+        {
+          "text": "and",
+          "start": 2.914,
+          "end": 3.053
+        },
+        {
+          "text": "it",
+          "start": 3.1,
+          "end": 3.158
+        },
+        {
+          "text": "can",
+          "start": 3.193,
+          "end": 3.309
+        },
+        {
+          "text": "act",
+          "start": 3.39,
+          "end": 3.657
+        },
+        {
+          "text": "on",
+          "start": 3.715,
+          "end": 3.796
+        },
+        {
+          "text": "whatever",
+          "start": 3.831,
+          "end": 4.156
+        },
+        {
+          "text": "you're",
+          "start": 4.203,
+          "end": 4.365
+        },
+        {
+          "text": "looking",
+          "start": 4.389,
+          "end": 4.644
+        },
+        {
+          "text": "at.",
+          "start": 4.714,
+          "end": 5.05
+        }
+      ],
+      "captions": [
+        {
+          "start": 0.023,
+          "end": 2.299,
+          "text": "On AI glasses, just say its"
+        },
+        {
+          "start": 2.299,
+          "end": 3.831,
+          "text": "name, and it can act on"
+        },
+        {
+          "start": 3.831,
+          "end": 5.05,
+          "text": "whatever you're looking at."
+        }
+      ]
+    },
+    "3": {
+      "idx": 3,
+      "headline": "It runs your Mac",
+      "narration": "On a Mac, Muse can now operate any app, even while you're away from your desk.",
+      "duration_s": 6,
+      "voice_s": 5.25,
+      "video_url": "https://v3b.fal.media/files/b/0aabc843/Mi9bT2Qmm1etrZXP1Zm4u_combined_output.mp4",
+      "silent_video_url": "https://v3b.fal.media/files/b/0aabc842/TueplGocqnpgG-AsH1jRo_65717bbf82964be88ab5c642a7e38d58.mp4",
+      "audio_url": "https://v3b.fal.media/files/b/0aabc83f/s57Sf6M3UIr0x84oTUb4-_output.mp3",
+      "words": [
+        {
+          "text": "On",
+          "start": 0.046,
+          "end": 0.221
+        },
+        {
+          "text": "a",
+          "start": 0.255,
+          "end": 0.279
+        },
+        {
+          "text": "Mac,",
+          "start": 0.337,
+          "end": 0.836
+        },
+        {
+          "text": "Muse",
+          "start": 1.115,
+          "end": 1.451
+        },
+        {
+          "text": "can",
+          "start": 1.486,
+          "end": 1.602
+        },
+        {
+          "text": "now",
+          "start": 1.649,
+          "end": 1.788
+        },
+        {
+          "text": "operate",
+          "start": 1.881,
+          "end": 2.334
+        },
+        {
+          "text": "any",
+          "start": 2.403,
+          "end": 2.659
+        },
+        {
+          "text": "app,",
+          "start": 2.74,
+          "end": 3.146
+        },
+        {
+          "text": "even",
+          "start": 3.529,
+          "end": 3.785
+        },
+        {
+          "text": "while",
+          "start": 3.82,
+          "end": 3.982
+        },
+        {
+          "text": "you're",
+          "start": 4.005,
+          "end": 4.18
+        },
+        {
+          "text": "away",
+          "start": 4.203,
+          "end": 4.365
+        },
+        {
+          "text": "from",
+          "start": 4.4,
+          "end": 4.516
+        },
+        {
+          "text": "your",
+          "start": 4.563,
+          "end": 4.667
+        },
+        {
+          "text": "desk.",
+          "start": 4.714,
+          "end": 5.248
+        }
+      ],
+      "captions": [
+        {
+          "start": 0.046,
+          "end": 1.881,
+          "text": "On a Mac, Muse can now"
+        },
+        {
+          "start": 1.881,
+          "end": 4.203,
+          "text": "operate any app, even while you're"
+        },
+        {
+          "start": 4.203,
+          "end": 5.248,
+          "text": "away from your desk."
+        }
+      ]
+    },
+    "4": {
+      "idx": 4,
+      "headline": "Shopping, handled",
+      "narration": "It can shop and pay for you, with Walmart, Best Buy, Sephora, Shop Pay and PayPal on board.",
+      "duration_s": 8,
+      "voice_s": 7.56,
+      "video_url": "https://v3b.fal.media/files/b/0aabc844/g7u1qJa7CPXOZpIC4mCKX_combined_output.mp4",
+      "silent_video_url": "https://v3b.fal.media/files/b/0aabc844/6nY3CVO-KqNwH2bHbEF0y_768e96065604418fb7644dbbb9e57105.mp4",
+      "audio_url": "https://v3b.fal.media/files/b/0aabc83f/XQkFTYUoVwLxXjJ58pxQd_output.mp3",
+      "words": [
+        {
+          "text": "It",
+          "start": 0.023,
+          "end": 0.163
+        },
+        {
+          "text": "can",
+          "start": 0.209,
+          "end": 0.337
+        },
+        {
+          "text": "shop",
+          "start": 0.395,
+          "end": 0.685
+        },
+        {
+          "text": "and",
+          "start": 0.743,
+          "end": 0.813
+        },
+        {
+          "text": "pay",
+          "start": 0.859,
+          "end": 1.01
+        },
+        {
+          "text": "for",
+          "start": 1.08,
+          "end": 1.184
+        },
+        {
+          "text": "you,",
+          "start": 1.254,
+          "end": 1.614
+        },
+        {
+          "text": "with",
+          "start": 1.788,
+          "end": 1.985
+        },
+        {
+          "text": "Walmart,",
+          "start": 2.043,
+          "end": 2.74
+        },
+        {
+          "text": "Best",
+          "start": 2.949,
+          "end": 3.239
+        },
+        {
+          "text": "Buy,",
+          "start": 3.309,
+          "end": 3.773
+        },
+        {
+          "text": "Sephora,",
+          "start": 3.947,
+          "end": 4.783
+        },
+        {
+          "text": "Shop",
+          "start": 5.027,
+          "end": 5.317
+        },
+        {
+          "text": "Pay",
+          "start": 5.375,
+          "end": 5.642
+        },
+        {
+          "text": "and",
+          "start": 6.026,
+          "end": 6.235
+        },
+        {
+          "text": "PayPal",
+          "start": 6.304,
+          "end": 6.734
+        },
+        {
+          "text": "on",
+          "start": 6.815,
+          "end": 6.931
+        },
+        {
+          "text": "board.",
+          "start": 7.001,
+          "end": 7.558
+        }
+      ],
+      "captions": [
+        {
+          "start": 0.023,
+          "end": 1.254,
+          "text": "It can shop and pay for"
+        },
+        {
+          "start": 1.254,
+          "end": 5.027,
+          "text": "you, with Walmart, Best Buy, Sephora,"
+        },
+        {
+          "start": 5.027,
+          "end": 7.558,
+          "text": "Shop Pay and PayPal on board."
+        }
+      ]
+    },
+    "5": {
+      "idx": 5,
+      "headline": "Lighter, smarter glasses",
+      "narration": "New Ray-Ban Meta glasses are slimmer, add an action button, and get the longest battery yet.",
+      "duration_s": 8,
+      "voice_s": 6.43,
+      "video_url": "https://v3b.fal.media/files/b/0aabc84a/MEhv9ieOlOjEn7CD1kI36_combined_output.mp4",
+      "silent_video_url": "https://v3b.fal.media/files/b/0aabc849/2kOJPkFi4LD_1yMuO9Dgs_113b10516e4547269b44ed4d1ee0b3cc.mp4",
+      "audio_url": "https://v3b.fal.media/files/b/0aabc843/uIdAUxJ2N-qNe-7XzSSBp_output.mp3",
+      "words": [
+        {
+          "text": "New",
+          "start": 0.046,
+          "end": 0.279
+        },
+        {
+          "text": "Ray-Ban",
+          "start": 0.395,
+          "end": 0.824
+        },
+        {
+          "text": "Meta",
+          "start": 0.894,
+          "end": 1.091
+        },
+        {
+          "text": "glasses",
+          "start": 1.138,
+          "end": 1.625
+        },
+        {
+          "text": "are",
+          "start": 1.695,
+          "end": 1.881
+        },
+        {
+          "text": "slimmer,",
+          "start": 1.927,
+          "end": 2.519
+        },
+        {
+          "text": "add",
+          "start": 2.844,
+          "end": 3.053
+        },
+        {
+          "text": "an",
+          "start": 3.088,
+          "end": 3.146
+        },
+        {
+          "text": "action",
+          "start": 3.216,
+          "end": 3.553
+        },
+        {
+          "text": "button,",
+          "start": 3.611,
+          "end": 4.133
+        },
+        {
+          "text": "and",
+          "start": 4.307,
+          "end": 4.47
+        },
+        {
+          "text": "get",
+          "start": 4.528,
+          "end": 4.679
+        },
+        {
+          "text": "the",
+          "start": 4.725,
+          "end": 4.795
+        },
+        {
+          "text": "longest",
+          "start": 4.888,
+          "end": 5.364
+        },
+        {
+          "text": "battery",
+          "start": 5.433,
+          "end": 5.863
+        },
+        {
+          "text": "yet.",
+          "start": 5.956,
+          "end": 6.432
+        }
+      ],
+      "captions": [
+        {
+          "start": 0.046,
+          "end": 2.844,
+          "text": "New Ray-Ban Meta glasses are slimmer,"
+        },
+        {
+          "start": 2.844,
+          "end": 4.725,
+          "text": "add an action button, and get"
+        },
+        {
+          "start": 4.725,
+          "end": 6.432,
+          "text": "the longest battery yet."
+        }
+      ]
+    },
+    "6": {
+      "idx": 6,
+      "headline": "VR, five times lighter",
+      "narration": "Meta's new VR Glasses weigh about 100 grams, five times lighter than Quest 3, for $1,299.",
+      "duration_s": 8,
+      "voice_s": 7.38,
+      "video_url": "https://v3b.fal.media/files/b/0aabc84a/oTvlo6ZTLmdgzNS4UmD_E_combined_output.mp4",
+      "silent_video_url": "https://v3b.fal.media/files/b/0aabc849/vCTxiBO7GtnlI1txmJTyy_613c7e8842bb4224a06dfc6cd86a74b0.mp4",
+      "audio_url": "https://v3b.fal.media/files/b/0aabc844/9HX1Gbui0VaA32Z6XZt_N_output.mp3",
+      "words": [
+        {
+          "text": "Meta's",
+          "start": 0.046,
+          "end": 0.36
+        },
+        {
+          "text": "new",
+          "start": 0.43,
+          "end": 0.58
+        },
+        {
+          "text": "VR",
+          "start": 0.65,
+          "end": 0.94
+        },
+        {
+          "text": "Glasses",
+          "start": 1.01,
+          "end": 1.474
+        },
+        {
+          "text": "weigh",
+          "start": 1.579,
+          "end": 1.776
+        },
+        {
+          "text": "about",
+          "start": 1.811,
+          "end": 2.032
+        },
+        {
+          "text": "100",
+          "start": 2.09,
+          "end": 2.461
+        },
+        {
+          "text": "grams,",
+          "start": 2.508,
+          "end": 3.065
+        },
+        {
+          "text": "five",
+          "start": 3.367,
+          "end": 3.622
+        },
+        {
+          "text": "times",
+          "start": 3.657,
+          "end": 3.913
+        },
+        {
+          "text": "lighter",
+          "start": 3.982,
+          "end": 4.226
+        },
+        {
+          "text": "than",
+          "start": 4.272,
+          "end": 4.4
+        },
+        {
+          "text": "Quest",
+          "start": 4.47,
+          "end": 4.748
+        },
+        {
+          "text": "3,",
+          "start": 4.818,
+          "end": 5.259
+        },
+        {
+          "text": "for",
+          "start": 5.48,
+          "end": 5.619
+        },
+        {
+          "text": "$1,299.",
+          "start": 5.666,
+          "end": 7.384
+        }
+      ],
+      "captions": [
+        {
+          "start": 0.046,
+          "end": 2.09,
+          "text": "Meta's new VR Glasses weigh about"
+        },
+        {
+          "start": 2.09,
+          "end": 4.47,
+          "text": "100 grams, five times lighter than"
+        },
+        {
+          "start": 4.47,
+          "end": 7.384,
+          "text": "Quest 3, for $1,299."
+        }
+      ]
+    },
+    "7": {
+      "idx": 7,
+      "headline": "Why it matters",
+      "narration": "Why it matters: Meta is betting your next computer is an AI agent you talk to and wear.",
+      "duration_s": 8,
+      "voice_s": 5.75,
+      "video_url": "https://v3b.fal.media/files/b/0aabc84b/MfmzPt07QXJpczGRYXvJ-_combined_output.mp4",
+      "silent_video_url": "https://v3b.fal.media/files/b/0aabc84a/IdPQ25_6PyXsJfBAN2Y6o_3bff8b81bc58492b853dfc891ae32206.mp4",
+      "audio_url": "https://v3b.fal.media/files/b/0aabc844/KSA76HLMiXQNBfHFQBUdf_output.mp3",
+      "words": [
+        {
+          "text": "Why",
+          "start": 0.046,
+          "end": 0.29
+        },
+        {
+          "text": "it",
+          "start": 0.36,
+          "end": 0.43
+        },
+        {
+          "text": "matters:",
+          "start": 0.488,
+          "end": 1.115
+        },
+        {
+          "text": "Meta",
+          "start": 1.498,
+          "end": 1.846
+        },
+        {
+          "text": "is",
+          "start": 1.916,
+          "end": 2.043
+        },
+        {
+          "text": "betting",
+          "start": 2.113,
+          "end": 2.368
+        },
+        {
+          "text": "your",
+          "start": 2.415,
+          "end": 2.531
+        },
+        {
+          "text": "next",
+          "start": 2.589,
+          "end": 2.798
+        },
+        {
+          "text": "computer",
+          "start": 2.844,
+          "end": 3.309
+        },
+        {
+          "text": "is",
+          "start": 3.39,
+          "end": 3.483
+        },
+        {
+          "text": "an",
+          "start": 3.529,
+          "end": 3.599
+        },
+        {
+          "text": "AI",
+          "start": 3.692,
+          "end": 4.18
+        },
+        {
+          "text": "agent",
+          "start": 4.261,
+          "end": 4.598
+        },
+        {
+          "text": "you",
+          "start": 4.656,
+          "end": 4.737
+        },
+        {
+          "text": "talk",
+          "start": 4.818,
+          "end": 5.016
+        },
+        {
+          "text": "to",
+          "start": 5.085,
+          "end": 5.166
+        },
+        {
+          "text": "and",
+          "start": 5.248,
+          "end": 5.317
+        },
+        {
+          "text": "wear.",
+          "start": 5.364,
+          "end": 5.747
+        }
+      ],
+      "captions": [
+        {
+          "start": 0.046,
+          "end": 2.415,
+          "text": "Why it matters: Meta is betting"
+        },
+        {
+          "start": 2.415,
+          "end": 4.261,
+          "text": "your next computer is an AI"
+        },
+        {
+          "start": 4.261,
+          "end": 5.747,
+          "text": "agent you talk to and wear."
+        }
+      ]
+    }
+  },
+  "insights": {
+    "headline": "Meta goes all-in on Muse, its personal AI agent, at Connect 2026",
+    "label": "Meta Connect",
+    "key_facts": [
+      "Muse is the centerpiece: real-time voice mode that keeps working on background tasks, with custom voices designed by description.",
+      "Muse comes to AI glasses (hands-free by name) and can act on what the wearer is looking at.",
+      "Muse for Mac gets computer use: it can operate any Mac app while the user is away.",
+      "New shopping and payment connectors: Walmart, Best Buy, Sephora, Ulta, Wayfair, Instacart, Shop Pay, PayPal; Expedia coming soon.",
+      "Ray-Ban Meta Gen 3: slimmer, action button, longest battery life of any Ray-Ban Meta.",
+      "Meta VR Glasses: about 100 grams (5x lighter than Quest 3), 5K micro-OLED, eye and hand tracking, $1,299.99, spring 2027.",
+      "FDA-cleared hearing assistance on AI glasses, $149.99, US later in 2026."
+    ],
+    "why_it_matters": "Meta is betting that the next computer is an AI agent you talk to and wear, not an app you open.",
+    "uncertainties": [
+      "Muse Charm details come later in 2026.",
+      "VR Glasses and Hologram features don't ship until spring 2027."
+    ]
+  },
+  "source": "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/"
+}

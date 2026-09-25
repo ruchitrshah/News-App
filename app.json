@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Genie",
+    "slug": "genie",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.ruchitshah.genie"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "package": "com.ruchitshah.genie"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "name": "Genie",
+      "backgroundColor": "#FFFFFF"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-status-bar",
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Genie uses the microphone so you can ask questions about the news by voice.",
+          "speechRecognitionPermission": "Genie transcribes your voice so you can ask questions about the news."
+        }
+      ],
+      "expo-video",
+      "expo-audio",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    ],
+    "backgroundColor": "#FFFFFF"
+  }
+}

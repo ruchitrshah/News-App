@@ -1,0 +1,653 @@
+{
+  "topic": "What did Meta announce at Connect 2026?",
+  "aboutStory": null,
+  "today": "2026-09-25",
+  "window_days": 7,
+  "cost": 0.6108260000000001,
+  "intent": {
+    "topic": "Meta Connect 2026 announcements",
+    "intent": "latest_updates",
+    "time_sensitivity": "high",
+    "domain": "technology",
+    "story_type": "product_launch",
+    "entities": [
+      "Meta",
+      "Connect 2026"
+    ],
+    "user_question": "What did Meta announce at Connect 2026?",
+    "window_days": 14
+  },
+  "gate": {
+    "status": "ready",
+    "what_changed": "Meta held its Connect 2026 keynote on Sept 23-24, 2026, announcing four new hardware products: Ray-Ban Meta Gen 3 glasses, camera-free Ray-Ban Meta Audio glasses, a new tethered VR headset ('Meta VR Glasses') powered by Snapdragon Reality Elite, and the Muse Charm AI pendant, alongside expanded AI glasses lineup across Ray-Ban/Oakley/Meta brands and Muse AI retail partnerships with Walmart and Instacart.",
+    "freshest_update": "Sept 23-24, 2026 keynote coverage and same-day product breakdowns from Tom's Guide, Engadget, and Meta's own blog",
+    "reason": "Multiple credible, detailed sources (Meta's official blog, Tom's Guide, Engadget) report specific, verifiable announcements with pricing, specs, and release dates from an event that just concluded 1-2 days ago, providing ample material for a substantive briefing.",
+    "suggestions": [
+      "Meta Ray-Ban pricing details",
+      "Qualcomm Snapdragon Reality Elite",
+      "Muse AI Walmart partnership"
+    ]
+  },
+  "sources": [
+    "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+    "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/",
+    "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/",
+    "https://www.stylerave.com/meta-connect-2026/",
+    "https://vr.org/meta-connect-2026",
+    "https://roadtovr.com/meta-vr-glasses-unveiled-price-release-date/",
+    "https://kantan.news/news/technical-specifications-of-the-new-vr-glasses-unveiled-at-meta-connect-2026",
+    "https://www.techtimes.com/articles/328012/20260924/meta-vr-glasses-camera-free-audio-specs-keychain-ai-lead-connect-2026-haul.htm",
+    "https://www.uploadvr.com/meta-vr-glasses-officially-announced-connect-2026/",
+    "https://www.meta.com/blog/meta-vr-glasses-announcement-meta-connect/",
+    "https://www.gadgetreview.com/meta-connect-2026-vr-glasses-ai-specs-and-every-announcement",
+    "https://virtual.reality.news/news/meta-connect-2026-live-blog-muse-ray-ban-vr-glasses/",
+    "https://www.tomsguide.com/computing/smart-glasses/ray-ban-meta-gen-3-smart-glasses-lots-more-styles-longer-battery-life-but-same-privacy-controls",
+    "https://www.itechpost.com/articles/237412/20260924/meta-connect-2026-all-new-smart-glasses-ai-glasses-announced.htm",
+    "https://bitcoinethereumnews.com/tech/meta-connect-2026-zuckerberg-unveils-charm-ai-gadget-new-vr-glasses-and-camera-free-ray-bans/"
+  ],
+  "dropped": {
+    "facts": 0,
+    "numbers": 0
+  },
+  "status": "ready",
+  "label": "Meta Connect 2026",
+  "headline": "Meta Bets on Lightweight AI Wearables Over Bulky Headsets and Phones",
+  "intelligence": {
+    "story": {
+      "title": "Meta Connect 2026: New VR Glasses, Ray-Ban Refresh, and Muse Charm Pendant",
+      "summary": "At Connect 2026 (Sept 23-24, Menlo Park), Meta unveiled four new hardware devices: ultra-light tethered Meta VR Glasses, third-gen Ray-Ban Meta camera glasses, camera-free Ray-Ban Meta Audio glasses, and a surprise AI pendant called Muse Charm. No new Quest headset was announced.",
+      "what_changed": "Meta shifted its hardware strategy from bulky standalone VR headsets to a thin, tethered VR glasses form factor and expanded AI wearables beyond glasses into a pendant device, while broadening its glasses lineup across Ray-Ban, Oakley and Meta brands.",
+      "why_it_matters": "This signals Meta's bet that lightweight, always-on AI-powered wearables (not phones or bulky headsets) will be the next computing platform, directly challenging Apple Vision Pro and expanding the AI assistant battle into new device categories."
+    },
+    "label": "Meta Connect",
+    "importance": {
+      "score": 7,
+      "reasons": [
+        "Major hardware announcements from one of the largest tech companies signal a strategic pivot in wearable computing",
+        "Introduces a new device category (AI pendant) and a new VR form factor aimed at competing with Apple Vision Pro",
+        "Affects consumers, developers, retailers (Walmart, Instacart integrations), and the broader AR/VR and AI assistant industry",
+        "Sets pricing and release timelines that will shape competitive responses across the industry"
+      ]
+    },
+    "key_facts": [
+      {
+        "fact": "Meta unveiled Meta VR Glasses, a tethered headset weighing about 100 grams (5x lighter than Quest 3), priced at $1,299.99, launching spring 2027.",
+        "importance": 5,
+        "novelty": 5,
+        "confidence": 4,
+        "source_urls": [
+          "https://vr.org/meta-connect-2026",
+          "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/"
+        ]
+      },
+      {
+        "fact": "Meta surprised attendees with the Muse Charm, a pendant-style AI device on a keychain that houses Meta's AI agent, launching this fall with pricing unannounced.",
+        "importance": 4,
+        "novelty": 5,
+        "confidence": 4,
+        "source_urls": [
+          "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+          "https://www.stylerave.com/meta-connect-2026/"
+        ]
+      },
+      {
+        "fact": "Meta VR Glasses use a 5K MicroOLED display at 2412x2288 pixels per eye, up to 120Hz, with a 70-degree horizontal field of view, narrower than Quest 3's ~110 degrees.",
+        "importance": 4,
+        "novelty": 4,
+        "confidence": 4,
+        "source_urls": [
+          "https://kantan.news/news/technical-specifications-of-the-new-vr-glasses-unveiled-at-meta-connect-2026",
+          "https://www.techtimes.com/articles/328012/20260924/meta-vr-glasses-camera-free-audio-specs-keychain-ai-lead-connect-2026-haul.htm"
+        ]
+      },
+      {
+        "fact": "All VR Glasses computing is offloaded to a tethered puck running Qualcomm's Snapdragon Reality Elite chipset with 12GB RAM, 128GB storage, and microSD expansion.",
+        "importance": 4,
+        "novelty": 4,
+        "confidence": 3,
+        "source_urls": [
+          "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/",
+          "https://www.uploadvr.com/meta-vr-glasses-officially-announced-connect-2026/"
+        ]
+      },
+      {
+        "fact": "Meta introduced Ray-Ban Meta Audio, its first-ever camera-free glasses, priced at $349, shipping October 13.",
+        "importance": 3,
+        "novelty": 4,
+        "confidence": 4,
+        "source_urls": [
+          "https://vr.org/meta-connect-2026",
+          "https://www.tomsguide.com/news/live/meta-connect-2026-live"
+        ]
+      },
+      {
+        "fact": "VR Glasses feature a 'hologram' calling feature creating a photorealistic real-time digital representation of the user from a phone self-capture, plus surface input turning any table into a keyboard/touchpad.",
+        "importance": 3,
+        "novelty": 4,
+        "confidence": 3,
+        "source_urls": [
+          "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/"
+        ]
+      },
+      {
+        "fact": "Muse AI is expanding to work with retailers including Walmart and Instacart, and will be integrated into Meta's glasses lineup.",
+        "importance": 3,
+        "novelty": 4,
+        "confidence": 3,
+        "source_urls": [
+          "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+          "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/"
+        ]
+      },
+      {
+        "fact": "Ray-Ban Meta (Gen 3) glasses refresh includes a 12MP camera with 3K video, six-microphone array with Dolby Atmos spatial audio, up to nine hours battery, new Aviator and Zena styles, available today starting at $449.",
+        "importance": 3,
+        "novelty": 3,
+        "confidence": 4,
+        "source_urls": [
+          "https://www.itechpost.com/articles/237412/20260924/meta-connect-2026-all-new-smart-glasses-ai-glasses-announced.htm",
+          "https://www.tomsguide.com/news/live/meta-connect-2026-live"
+        ]
+      },
+      {
+        "fact": "No new Quest headset was announced at Connect 2026, marking a departure from prior years' focus.",
+        "importance": 3,
+        "novelty": 3,
+        "confidence": 3,
+        "source_urls": [
+          "https://vr.org/meta-connect-2026"
+        ]
+      },
+      {
+        "fact": "Meta plans over 100 styles of AI glasses across Ray-Ban, Oakley, and Meta brands by year-end 2026.",
+        "importance": 3,
+        "novelty": 3,
+        "confidence": 3,
+        "source_urls": [
+          "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/"
+        ]
+      }
+    ],
+    "numbers": [
+      {
+        "value": "1,299.99",
+        "unit": "USD",
+        "time": "spring 2027 launch",
+        "comparison": "vs no direct predecessor; positioned against Apple Vision Pro",
+        "label": "Meta VR Glasses price",
+        "source_url": "https://vr.org/meta-connect-2026"
+      },
+      {
+        "value": "100",
+        "unit": "grams",
+        "time": "Sept 2026 announcement",
+        "comparison": "5x lighter than Meta Quest 3",
+        "label": "Meta VR Glasses weight",
+        "source_url": "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/"
+      },
+      {
+        "value": "449",
+        "unit": "USD",
+        "time": "available today (Sept 2026)",
+        "comparison": "",
+        "label": "Ray-Ban Meta Gen 3 starting price",
+        "source_url": "https://www.tomsguide.com/news/live/meta-connect-2026-live"
+      },
+      {
+        "value": "349",
+        "unit": "USD",
+        "time": "pre-order, ships Oct 13, 2026",
+        "comparison": "$100 less than Ray-Ban Meta Gen 3",
+        "label": "Ray-Ban Meta Audio price",
+        "source_url": "https://www.tomsguide.com/news/live/meta-connect-2026-live"
+      },
+      {
+        "value": "5K",
+        "unit": "resolution class (2412x2288 per eye)",
+        "time": "Sept 2026",
+        "comparison": "higher pixel density than Quest 3",
+        "label": "VR Glasses display resolution",
+        "source_url": "https://kantan.news/news/technical-specifications-of-the-new-vr-glasses-unveiled-at-meta-connect-2026"
+      },
+      {
+        "value": "70",
+        "unit": "degrees",
+        "time": "Sept 2026",
+        "comparison": "narrower than Quest 3's ~110 degrees",
+        "label": "VR Glasses field of view",
+        "source_url": "https://www.techtimes.com/articles/328012/20260924/meta-vr-glasses-camera-free-audio-specs-keychain-ai-lead-connect-2026-haul.htm"
+      },
+      {
+        "value": "3",
+        "unit": "hours",
+        "time": "Sept 2026",
+        "comparison": "continuous high-resolution media playback per charge",
+        "label": "VR Glasses puck battery life",
+        "source_url": "https://www.meta.com/blog/meta-vr-glasses-announcement-meta-connect/"
+      },
+      {
+        "value": "9",
+        "unit": "hours",
+        "time": "Sept 2026",
+        "comparison": "longer than Ray-Ban Meta Gen 2",
+        "label": "Ray-Ban Meta Gen 3 battery life",
+        "source_url": "https://www.itechpost.com/articles/237412/20260924/meta-connect-2026-all-new-smart-glasses-ai-glasses-announced.htm"
+      }
+    ],
+    "uncertainties": [
+      "Meta's claimed 3-hour battery life for the VR Glasses puck has not yet been independently verified by reviewers.",
+      "Muse Charm pricing has not yet been announced.",
+      "Long-term consumer reception and sales performance of the new VR Glasses form factor versus competitors like Apple Vision Pro is unknown.",
+      "Exact real-world field-of-view and display quality comparisons versus Quest 3 await hands-on independent testing."
+    ],
+    "sources": [
+      "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+      "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/",
+      "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/",
+      "https://www.stylerave.com/meta-connect-2026/",
+      "https://vr.org/meta-connect-2026",
+      "https://roadtovr.com/meta-vr-glasses-unveiled-price-release-date/",
+      "https://kantan.news/news/technical-specifications-of-the-new-vr-glasses-unveiled-at-meta-connect-2026",
+      "https://www.techtimes.com/articles/328012/20260924/meta-vr-glasses-camera-free-audio-specs-keychain-ai-lead-connect-2026-haul.htm",
+      "https://www.uploadvr.com/meta-vr-glasses-officially-announced-connect-2026/",
+      "https://www.meta.com/blog/meta-vr-glasses-announcement-meta-connect/",
+      "https://www.gadgetreview.com/meta-connect-2026-vr-glasses-ai-specs-and-every-announcement",
+      "https://virtual.reality.news/news/meta-connect-2026-live-blog-muse-ray-ban-vr-glasses/",
+      "https://www.tomsguide.com/computing/smart-glasses/ray-ban-meta-gen-3-smart-glasses-lots-more-styles-longer-battery-life-but-same-privacy-controls",
+      "https://www.itechpost.com/articles/237412/20260924/meta-connect-2026-all-new-smart-glasses-ai-glasses-announced.htm",
+      "https://bitcoinethereumnews.com/tech/meta-connect-2026-zuckerberg-unveils-charm-ai-gadget-new-vr-glasses-and-camera-free-ray-bans/"
+    ]
+  },
+  "media_candidates": [
+    {
+      "id": "m1",
+      "type": "external_video",
+      "provider": "youtube",
+      "video_id": "SmktC6e4dAc",
+      "url": "https://www.youtube.com/watch?v=SmktC6e4dAc",
+      "page": null,
+      "source": "Meta Developers",
+      "title": "Meta Connect 2026: Opening Keynote",
+      "thumbnail": "https://i.ytimg.com/vi/SmktC6e4dAc/hqdefault.jpg",
+      "start_time": null,
+      "end_time": null,
+      "fact": "Meta Connect 2026 Opening Keynote — full unveiling of Meta VR Glasses, Muse Charm, Ray-Ban Meta Audio, and the broader AI glasses lineup",
+      "reason": "This is Meta's own official Connect 2026 Opening Keynote video where CEO Mark Zuckerberg and Reality Labs chief Andrew Bosworth reveal all the headline hardware, making it the primary authoritative source for the entire story.",
+      "relevance": 5,
+      "authority": 5
+    },
+    {
+      "id": "m2",
+      "type": "external_video",
+      "provider": "youtube",
+      "video_id": "7VVxh1rCZwU",
+      "url": "https://www.youtube.com/watch?v=7VVxh1rCZwU",
+      "page": null,
+      "source": "Associated Press",
+      "title": "LIVE: Mark Zuckerberg gives keynote address at Meta Connect 2026",
+      "thumbnail": "https://i.ytimg.com/vi/7VVxh1rCZwU/hqdefault.jpg",
+      "start_time": null,
+      "end_time": null,
+      "fact": "Live keynote address by Mark Zuckerberg at Meta Connect 2026 covering VR Glasses and Muse Charm reveal",
+      "reason": "AP's live recording of Zuckerberg's keynote address provides an authoritative, journalistically vetted record of the on-stage reveal.",
+      "relevance": 4,
+      "authority": 4
+    },
+    {
+      "id": "m3",
+      "type": "external_video",
+      "provider": "youtube",
+      "video_id": "hI3M_4UQoWk",
+      "url": "https://www.youtube.com/watch?v=hI3M_4UQoWk",
+      "page": null,
+      "source": "Yahoo Finance",
+      "title": "LIVE: Mark Zuckerberg's Meta Connect 2026 keynote",
+      "thumbnail": "https://i.ytimg.com/vi/hI3M_4UQoWk/hqdefault.jpg",
+      "start_time": null,
+      "end_time": null,
+      "fact": "Full Meta Connect 2026 keynote unveiling AI, AI glasses, and virtual reality hardware",
+      "reason": "Alternate official/live keynote upload capturing Zuckerberg's full presentation of the hardware lineup, useful as a backup authoritative source for the keynote content.",
+      "relevance": 4,
+      "authority": 4
+    },
+    {
+      "id": "m4",
+      "type": "image",
+      "provider": null,
+      "video_id": null,
+      "url": "https://www.engadget.com/img/gallery/everything-announced-at-meta-connect-2026/l-intro-1790209433.jpg",
+      "page": "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/",
+      "source": "Engadget",
+      "title": "Everything announced at Meta Connect 2026 - Engadget",
+      "thumbnail": null,
+      "start_time": null,
+      "end_time": null,
+      "fact": null,
+      "reason": "Lead image of a source article",
+      "relevance": null,
+      "authority": null
+    },
+    {
+      "id": "m5",
+      "type": "image",
+      "provider": null,
+      "video_id": null,
+      "url": "https://cdn.mos.cms.futurecdn.net/rFdscHc3giA2Xmc6kLKBX-2560-80.jpg",
+      "page": "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+      "source": "Tom",
+      "title": "Meta Connect 2026 RECAP: Mark Zuckerberg announces new VR glasses, Muse Charm, Ray-Ban Meta gen 3, audio-only smart glasses",
+      "thumbnail": null,
+      "start_time": null,
+      "end_time": null,
+      "fact": null,
+      "reason": "Lead image of a source article",
+      "relevance": null,
+      "authority": null
+    },
+    {
+      "id": "m6",
+      "type": "external_video",
+      "provider": "youtube",
+      "video_id": "eE_265Hhi3E",
+      "url": "https://www.youtube.com/watch?v=eE_265Hhi3E",
+      "page": "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+      "source": "Tom’s Guide",
+      "title": "Other Smart Glasses “End Up Being Creepy…” | Snapchat CEO on Smart Glasses",
+      "thumbnail": "https://i.ytimg.com/vi/eE_265Hhi3E/hqdefault.jpg",
+      "start_time": null,
+      "end_time": null,
+      "fact": null,
+      "reason": "Video embedded in a source article",
+      "relevance": null,
+      "authority": null
+    },
+    {
+      "id": "m7",
+      "type": "image",
+      "provider": null,
+      "video_id": null,
+      "url": "https://roadtovr.com/wp-content/uploads/2026/09/meta-vr-glasses-1.jpg",
+      "page": "https://roadtovr.com/meta-vr-glasses-unveiled-price-release-date/",
+      "source": "Road to VR",
+      "title": "Meta Announces &#039;VR Glasses&#039; Next-Gen XR Headset, Priced at $1,300",
+      "thumbnail": null,
+      "start_time": null,
+      "end_time": null,
+      "fact": null,
+      "reason": "Lead image of a source article",
+      "relevance": null,
+      "authority": null
+    },
+    {
+      "id": "m8",
+      "type": "external_video",
+      "provider": "youtube",
+      "video_id": "xyD_bmMy5nQ",
+      "url": "https://www.youtube.com/watch?v=xyD_bmMy5nQ",
+      "page": "https://roadtovr.com/meta-vr-glasses-unveiled-price-release-date/",
+      "source": "Meta VR",
+      "title": "Introducing Meta VR Glasses | Spring 2027",
+      "thumbnail": "https://i.ytimg.com/vi/xyD_bmMy5nQ/hqdefault.jpg",
+      "start_time": null,
+      "end_time": null,
+      "fact": null,
+      "reason": "Video embedded in a source article",
+      "relevance": null,
+      "authority": null
+    },
+    {
+      "id": "m9",
+      "type": "image",
+      "provider": null,
+      "video_id": null,
+      "url": "https://d.techtimes.com/en/full/475942/meta-vr-glasses.png",
+      "page": "https://www.techtimes.com/articles/328012/20260924/meta-vr-glasses-camera-free-audio-specs-keychain-ai-lead-connect-2026-haul.htm",
+      "source": "Tech Times",
+      "title": "Meta VR Glasses, Camera-Free Audio Specs, and Keychain AI Lead Connect 2026 Haul",
+      "thumbnail": null,
+      "start_time": null,
+      "end_time": null,
+      "fact": null,
+      "reason": "Lead image of a source article",
+      "relevance": null,
+      "authority": null
+    },
+    {
+      "id": "m10",
+      "type": "image",
+      "provider": null,
+      "video_id": null,
+      "url": "https://www.stylerave.com/wp-content/uploads/2026/09/meta-connect-2026.jpg",
+      "page": "https://www.stylerave.com/meta-connect-2026/",
+      "source": "Style Rave | The Ultimate Style Guide",
+      "title": "Meta Connect 2026 Sees Meta Expand Its AI Glasses Lineup with New Hardware",
+      "thumbnail": null,
+      "start_time": null,
+      "end_time": null,
+      "fact": null,
+      "reason": "Lead image of a source article",
+      "relevance": null,
+      "authority": null
+    }
+  ],
+  "cards": [
+    {
+      "idx": 0,
+      "sequence": 1,
+      "purpose": "what_happened",
+      "format": "text",
+      "headline": "Meta Reveals Thin VR Glasses, AI Pendant",
+      "caption": "Meta shifted from bulky Quest headsets to thin tethered VR glasses and a new AI pendant, expanding its wearables bet.",
+      "media": {
+        "id": "m7",
+        "type": "image",
+        "provider": null,
+        "video_id": null,
+        "url": "https://roadtovr.com/wp-content/uploads/2026/09/meta-vr-glasses-1.jpg",
+        "page": "https://roadtovr.com/meta-vr-glasses-unveiled-price-release-date/",
+        "source": "Road to VR",
+        "title": "Meta Announces &#039;VR Glasses&#039; Next-Gen XR Headset, Priced at $1,300",
+        "thumbnail": null,
+        "start_time": null,
+        "end_time": null,
+        "fact": null,
+        "reason": "Lead image of a source article",
+        "relevance": null,
+        "authority": null
+      },
+      "number": null,
+      "facts": [
+        "Meta unveiled Meta VR Glasses, a tethered headset weighing about 100 grams (5x lighter than Quest 3), priced at $1,299.99, launching spring 2027.",
+        "Meta surprised attendees with the Muse Charm, a pendant-style AI device on a keychain that houses Meta's AI agent, launching this fall with pricing unannounced."
+      ],
+      "sources": [
+        "https://vr.org/meta-connect-2026",
+        "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/",
+        "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+        "https://www.stylerave.com/meta-connect-2026/"
+      ],
+      "visual_prompt": null,
+      "generation_reason": null
+    },
+    {
+      "idx": 1,
+      "sequence": 2,
+      "purpose": "key_evidence",
+      "format": "external_video",
+      "headline": "Watch the Full Unveiling",
+      "caption": "Meta's keynote reveals VR Glasses, Muse Charm and the expanded Ray-Ban lineup live on stage.",
+      "media": {
+        "id": "m8",
+        "type": "external_video",
+        "provider": "youtube",
+        "video_id": "xyD_bmMy5nQ",
+        "url": "https://www.youtube.com/watch?v=xyD_bmMy5nQ",
+        "page": "https://roadtovr.com/meta-vr-glasses-unveiled-price-release-date/",
+        "source": "Meta VR",
+        "title": "Introducing Meta VR Glasses | Spring 2027",
+        "thumbnail": "https://i.ytimg.com/vi/xyD_bmMy5nQ/hqdefault.jpg",
+        "start_time": null,
+        "end_time": null,
+        "fact": null,
+        "reason": "Video embedded in a source article",
+        "relevance": null,
+        "authority": null
+      },
+      "number": null,
+      "facts": [
+        "Meta unveiled Meta VR Glasses, a tethered headset weighing about 100 grams (5x lighter than Quest 3), priced at $1,299.99, launching spring 2027.",
+        "Meta surprised attendees with the Muse Charm, a pendant-style AI device on a keychain that houses Meta's AI agent, launching this fall with pricing unannounced."
+      ],
+      "sources": [
+        "https://vr.org/meta-connect-2026",
+        "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/",
+        "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+        "https://www.stylerave.com/meta-connect-2026/"
+      ],
+      "visual_prompt": null,
+      "generation_reason": null
+    },
+    {
+      "idx": 2,
+      "sequence": 3,
+      "purpose": "key_evidence",
+      "format": "graphic",
+      "headline": "100 Grams, 5x Lighter",
+      "caption": "VR Glasses weigh just 100 grams — five times lighter than Meta's Quest 3 headset.",
+      "media": null,
+      "number": {
+        "value": "100",
+        "unit": "grams",
+        "time": "Sept 2026 announcement",
+        "comparison": "5x lighter than Meta Quest 3",
+        "label": "Meta VR Glasses weight",
+        "source_url": "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/"
+      },
+      "facts": [
+        "Meta unveiled Meta VR Glasses, a tethered headset weighing about 100 grams (5x lighter than Quest 3), priced at $1,299.99, launching spring 2027."
+      ],
+      "sources": [
+        "https://vr.org/meta-connect-2026",
+        "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/"
+      ],
+      "visual_prompt": null,
+      "generation_reason": null
+    },
+    {
+      "idx": 3,
+      "sequence": 4,
+      "purpose": "context",
+      "format": "text",
+      "headline": "Trade-Off: Narrower View, Offloaded Power",
+      "caption": "70-degree field of view is narrower than Quest 3's ~110 degrees; computing offloaded to a tethered puck.",
+      "media": null,
+      "number": null,
+      "facts": [
+        "Meta VR Glasses use a 5K MicroOLED display at 2412x2288 pixels per eye, up to 120Hz, with a 70-degree horizontal field of view, narrower than Quest 3's ~110 degrees.",
+        "All VR Glasses computing is offloaded to a tethered puck running Qualcomm's Snapdragon Reality Elite chipset with 12GB RAM, 128GB storage, and microSD expansion."
+      ],
+      "sources": [
+        "https://kantan.news/news/technical-specifications-of-the-new-vr-glasses-unveiled-at-meta-connect-2026",
+        "https://www.techtimes.com/articles/328012/20260924/meta-vr-glasses-camera-free-audio-specs-keychain-ai-lead-connect-2026-haul.htm",
+        "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/",
+        "https://www.uploadvr.com/meta-vr-glasses-officially-announced-connect-2026/"
+      ],
+      "visual_prompt": null,
+      "generation_reason": null
+    },
+    {
+      "idx": 4,
+      "sequence": 5,
+      "purpose": "what_happened",
+      "format": "image",
+      "headline": "Ray-Ban Lineup Expands Three Ways",
+      "caption": "Ray-Ban Meta Gen 3 launches at $449, plus a camera-free Audio model at $349 shipping Oct 13.",
+      "media": {
+        "id": "m9",
+        "type": "image",
+        "provider": null,
+        "video_id": null,
+        "url": "https://d.techtimes.com/en/full/475942/meta-vr-glasses.png",
+        "page": "https://www.techtimes.com/articles/328012/20260924/meta-vr-glasses-camera-free-audio-specs-keychain-ai-lead-connect-2026-haul.htm",
+        "source": "Tech Times",
+        "title": "Meta VR Glasses, Camera-Free Audio Specs, and Keychain AI Lead Connect 2026 Haul",
+        "thumbnail": null,
+        "start_time": null,
+        "end_time": null,
+        "fact": null,
+        "reason": "Lead image of a source article",
+        "relevance": null,
+        "authority": null
+      },
+      "number": null,
+      "facts": [
+        "Meta introduced Ray-Ban Meta Audio, its first-ever camera-free glasses, priced at $349, shipping October 13.",
+        "Muse AI is expanding to work with retailers including Walmart and Instacart, and will be integrated into Meta's glasses lineup."
+      ],
+      "sources": [
+        "https://vr.org/meta-connect-2026",
+        "https://www.tomsguide.com/news/live/meta-connect-2026-live",
+        "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/"
+      ],
+      "visual_prompt": null,
+      "generation_reason": null
+    },
+    {
+      "idx": 5,
+      "sequence": 6,
+      "purpose": "what_changed",
+      "format": "text",
+      "headline": "No New Quest This Year",
+      "caption": "Meta skipped a new Quest headset announcement, signaling glasses now lead its hardware strategy.",
+      "media": null,
+      "number": null,
+      "facts": [
+        "Ray-Ban Meta (Gen 3) glasses refresh includes a 12MP camera with 3K video, six-microphone array with Dolby Atmos spatial audio, up to nine hours battery, new Aviator and Zena styles, available today starting at $449."
+      ],
+      "sources": [
+        "https://www.itechpost.com/articles/237412/20260924/meta-connect-2026-all-new-smart-glasses-ai-glasses-announced.htm",
+        "https://www.tomsguide.com/news/live/meta-connect-2026-live"
+      ],
+      "visual_prompt": null,
+      "generation_reason": null
+    },
+    {
+      "idx": 6,
+      "sequence": 7,
+      "purpose": "why_it_matters",
+      "format": "text",
+      "headline": "100+ Styles, One AI Assistant",
+      "caption": "Meta plans 100+ AI glasses styles across Ray-Ban, Oakley and Meta by year-end, challenging Apple Vision Pro.",
+      "media": {
+        "id": "m10",
+        "type": "image",
+        "provider": null,
+        "video_id": null,
+        "url": "https://www.stylerave.com/wp-content/uploads/2026/09/meta-connect-2026.jpg",
+        "page": "https://www.stylerave.com/meta-connect-2026/",
+        "source": "Style Rave | The Ultimate Style Guide",
+        "title": "Meta Connect 2026 Sees Meta Expand Its AI Glasses Lineup with New Hardware",
+        "thumbnail": null,
+        "start_time": null,
+        "end_time": null,
+        "fact": null,
+        "reason": "Lead image of a source article",
+        "relevance": null,
+        "authority": null
+      },
+      "number": null,
+      "facts": [
+        "Meta plans over 100 styles of AI glasses across Ray-Ban, Oakley, and Meta brands by year-end 2026.",
+        "Muse AI is expanding to work with retailers including Walmart and Instacart, and will be integrated into Meta's glasses lineup."
+      ],
+      "sources": [
+        "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/",
+        "https://www.tomsguide.com/news/live/meta-connect-2026-live"
+      ],
+      "visual_prompt": null,
+      "generation_reason": null
+    }
+  ],
+  "generation_required": false,
+  "generation_reason": ""
+}

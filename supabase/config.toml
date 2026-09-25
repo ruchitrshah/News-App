@@ -1,0 +1,11 @@
+# Per-function settings (used by `supabase functions deploy`).
+[functions.ask]
+verify_jwt = true
+
+# Internal: authenticated by the x-pipeline-secret header.
+[functions.pipeline-advance]
+verify_jwt = false
+
+# Called by fal (or the dummy adapter): authenticated by a signed URL token.
+[functions.fal-webhook]
+verify_jwt = false
