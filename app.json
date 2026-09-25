@@ -8,7 +8,18 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.ruchitshah.genie"
+      "bundleIdentifier": "com.ruchitshah.genie",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocalNetworkUsageDescription": "Genie connects to your briefing server on your local network to research and build news briefings.",
+        "NSSpeechRecognitionUsageDescription": "Genie transcribes your voice so you can ask questions about the news.",
+        "NSMicrophoneUsageDescription": "Genie uses the microphone so you can ask questions about the news by voice.",
+        "NSPhotoLibraryUsageDescription": "Genie doesn't access your photos. This is only shown if an embedded web page asks you to choose a photo.",
+        "NSCameraUsageDescription": "Genie doesn't use your camera. This is only shown if an embedded web page asks to use it."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -17,7 +28,13 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "package": "com.ruchitshah.genie"
+      "package": "com.ruchitshah.genie",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -44,8 +61,15 @@
           "resizeMode": "contain",
           "backgroundColor": "#FFFFFF"
         }
-      ]
+      ],
+      "expo-asset"
     ],
-    "backgroundColor": "#FFFFFF"
+    "backgroundColor": "#FFFFFF",
+    "extra": {
+      "eas": {
+        "projectId": "869749d5-798c-47f6-965b-a76d6da33746"
+      }
+    },
+    "owner": "ruchitrshah"
   }
 }
