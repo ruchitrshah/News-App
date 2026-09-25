@@ -11,6 +11,9 @@ import EmptyFeed from './src/features/feed/EmptyFeed';
 import Toast from './src/features/feed/Toast';
 import VoiceComposer, { useComposerTop } from './src/features/composer/VoiceComposer';
 import NewsListSheet from './src/features/news/NewsListSheet';
+import IntroScreen from './src/features/intro/IntroScreen';
+import { setFeedHeld } from './src/features/composer/micSignal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NEWS } from './src/data/stories';
 import { storyFromQuestion, newsFromQuestion, labelFromQuestion } from './src/data/askToNews';
 import { askQuestion, subscribeRequest, beatsToStories, backendConfigured, fetchLibrary, fromJob } from './src/data/pipeline';
@@ -277,15 +280,47 @@ function Shell() {
   );
 }
 
+// The welcome screen shows once per install (remembered on the device).
+const INTRO_KEY = 'genie.intro.seen.v1';
+
+function useIntro() {
+  const [state, setState] = useState('unknown'); // 'unknown' | 'show' | 'leaving' | 'done'
+  useEffect(() => {
+    AsyncStorage.getItem(INTRO_KEY)
+      .then((seen) => setState(seen ? 'done' : 'show'))
+      .catch(() => setState('show'));
+  }, []);
+  const start = useCallback(() => {
+    setState('leaving');
+    AsyncStorage.setItem(INTRO_KEY, '1').catch(() => {});
+  }, []);
+  const finish = useCallback(() => setState('done'), []);
+  return [state, start, finish];
+}
+
 export default function App() {
   const [fontsLoaded] = useFonts(FontAssets);
+  const [intro, startApp, finishIntro] = useIntro();
+  // The feed loads behind the welcome (so Get started is instant) but holds
+  // still — no video, narration or countdown — until it's dismissed.
+  const feedReady = fontsLoaded && intro !== 'unknown';
+  useEffect(() => {
+    setFeedHeld(intro === 'show' || intro === 'unknown');
+  }, [intro]);
 
   return (
     <SafeAreaProvider>
       <StatusBar style="dark" />
       {/* On desktop web, present the app in a phone-width column. */}
       <View style={styles.stage}>
-        <View style={styles.device}>{fontsLoaded ? <Shell /> : null}</View>
+        <View style={styles.device}>
+          {feedReady ? <Shell /> : null}
+          {/* Until we know whether to welcome, cover the feed so it can't flash. */}
+          {fontsLoaded && (intro === 'show' || intro === 'leaving') ? (
+            <IntroScreen onStart={startApp} onDone={finishIntro} />
+          ) : null}
+          {intro === 'unknown' ? <View style={styles.cover} /> : null}
+        </View>
       </View>
     </SafeAreaProvider>
   );
@@ -297,6 +332,7 @@ const styles = StyleSheet.create({
     backgroundColor: Platform.OS === 'web' ? Colors.surface.soft : Colors.surface.page,
     alignItems: 'center',
   },
+  cover: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 60, backgroundColor: Colors.surface.page },
   device: {
     flex: 1,
     width: '100%',

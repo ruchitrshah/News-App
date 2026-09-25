@@ -3,6 +3,9 @@
 import { useSyncExternalStore } from 'react';
 
 let active = false;
+// Also held while something covers the feed entirely (the welcome screen):
+// the feed is mounted and ready underneath, but nothing plays or counts down.
+let held = false;
 const listeners = new Set();
 
 export function setMicActive(next) {
@@ -11,12 +14,19 @@ export function setMicActive(next) {
   listeners.forEach((l) => l());
 }
 
+export function setFeedHeld(next) {
+  if (next === held) return;
+  held = next;
+  listeners.forEach((l) => l());
+}
+
 function subscribe(listener) {
   listeners.add(listener);
   return () => listeners.delete(listener);
 }
 
-const read = () => active;
+// True when the feed should hold still: the mic is open, or it's covered.
+const read = () => active || held;
 
 export function useMicActive() {
   return useSyncExternalStore(subscribe, read, read);
