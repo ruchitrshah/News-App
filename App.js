@@ -13,7 +13,8 @@ import VoiceComposer, { useComposerTop } from './src/features/composer/VoiceComp
 import NewsListSheet from './src/features/news/NewsListSheet';
 import { NEWS } from './src/data/stories';
 import { storyFromQuestion, newsFromQuestion, labelFromQuestion } from './src/data/askToNews';
-import { askQuestion, subscribeRequest, beatsToStories, backendConfigured, fetchLibrary } from './src/data/pipeline';
+import { askQuestion, subscribeRequest, beatsToStories, backendConfigured, fetchLibrary, fromJob } from './src/data/pipeline';
+import { STARTER_JOBS, STARTER_MEDIA } from './src/data/starter';
 
 // Swap the stories that belong to one asked question (the placeholder, or the
 // beats that replaced it) for `next`, keeping their place in the bar.
@@ -24,14 +25,66 @@ function replaceAsked(stories, match, next) {
   return [...rest.slice(0, first), ...next, ...rest.slice(first)];
 }
 
+// Fold server jobs ({ request, beats }) into the news list: a job on an
+// existing news item joins its story bar, anything else becomes a new pill.
+// Jobs already present (same request id) are skipped, so the bundled starter
+// briefings and the live library never double up. Returns what to resume.
+function mergeLibrary(prev, items) {
+  let next = prev;
+  const resume = [];
+  for (const { request, beats } of items) {
+    const newsId = request.newsId;
+    if (next.some((n) => n.stories.some((st) => st.requestId === request.id))) continue;
+    const createdAt = Date.parse(request.createdAt) || Date.now();
+    const placeholder = {
+      id: `ask-${request.id}`,
+      requestId: request.id,
+      asked: true,
+      headline: request.prompt,
+      status: 'generating',
+      stage: request.status,
+      createdAt,
+    };
+    const stories = beats.length ? beatsToStories(request, beats) : [placeholder];
+    if (next.some((n) => n.id === newsId)) {
+      next = next.map((n) => (n.id === newsId ? { ...n, stories: [...n.stories, ...stories] } : n));
+    } else {
+      next = [
+        ...next,
+        {
+          id: newsId,
+          label: request.insights?.label || labelFromQuestion(request.prompt),
+          origin: 'created',
+          illustration: null,
+          createdAt,
+          stories,
+        },
+      ];
+    }
+    if (request.status !== 'ready') {
+      resume.push({ requestId: request.id, newsId, placeholder, relabel: request.mode === 'new' });
+    }
+  }
+  return { next, resume };
+}
+
+// Briefings bundled with the app (scripts/make-starter.mjs): a fresh install
+// opens on real stories, playable with no server.
+const STARTER_NEWS = mergeLibrary(
+  NEWS,
+  STARTER_JOBS.map((job) => fromJob(job, (p) => STARTER_MEDIA[p] ?? null))
+).next.map((n) => ({ ...n, featured: true }));
+
 function Shell() {
-  const [news, setNews] = useState(NEWS);
+  const [news, setNews] = useState(STARTER_NEWS);
+  const newsRef = useRef(news);
+  newsRef.current = news;
   const [toast, setToast] = useState(null);
   const composerTop = useComposerTop();
   // What's on screen right now — a question asked is about this story, and
   // lands on this news item.
   const onScreen = useRef({ story: null, newsId: null });
-  const [selectedNewsId, setSelectedNewsId] = useState(NEWS[0]?.id ?? null);
+  const [selectedNewsId, setSelectedNewsId] = useState(STARTER_NEWS[0]?.id ?? null);
   // False until the server's library has been asked for (or there's no server).
   const [libraryLoaded, setLibraryLoaded] = useState(!backendConfigured);
   const onActiveStory = useCallback((story, newsId) => {
@@ -50,6 +103,11 @@ function Shell() {
   const onCreate = useCallback(() => {
     createMode.current = true;
     composer.current?.openCreate();
+  }, []);
+  // The empty feed's "Type instead": same new-news mode, keyboard first.
+  const onCreateTyping = useCallback(() => {
+    createMode.current = true;
+    composer.current?.openKeyboard('What news should we explain?');
   }, []);
   const onKeyboardClose = useCallback(() => {
     createMode.current = false;
@@ -128,44 +186,10 @@ function Shell() {
     fetchLibrary()
       .then((items) => {
         if (cancelled || !items.length) return;
-        const resume = [];
-        setNews((prev) => {
-          let next = prev;
-          for (const { request, beats } of items) {
-            const newsId = request.newsId;
-            if (next.some((n) => n.stories.some((st) => st.requestId === request.id))) continue;
-            const createdAt = Date.parse(request.createdAt) || Date.now();
-            const placeholder = {
-              id: `ask-${request.id}`,
-              requestId: request.id,
-              asked: true,
-              headline: request.prompt,
-              status: 'generating',
-              stage: request.status,
-              createdAt,
-            };
-            const stories = beats.length ? beatsToStories(request, beats) : [placeholder];
-            if (next.some((n) => n.id === newsId)) {
-              next = next.map((n) => (n.id === newsId ? { ...n, stories: [...n.stories, ...stories] } : n));
-            } else {
-              next = [
-                ...next,
-                {
-                  id: newsId,
-                  label: request.insights?.label || labelFromQuestion(request.prompt),
-                  origin: 'created',
-                  illustration: null,
-                  createdAt,
-                  stories,
-                },
-              ];
-            }
-            if (request.status !== 'ready') {
-              resume.push({ requestId: request.id, newsId, placeholder, relabel: request.mode === 'new' });
-            }
-          }
-          return next;
-        });
+        // What to resume is decided against the list as it is now; the state
+        // update itself merges into whatever the list is when it applies.
+        const { resume } = mergeLibrary(newsRef.current, items);
+        setNews((prev) => mergeLibrary(prev, items).next);
         resume.forEach(follow);
       })
       .catch(() => {
@@ -222,7 +246,13 @@ function Shell() {
       {news.length ? (
         <FeedScreen ref={feed} news={news} onActiveStory={onActiveStory} onCreate={onCreate} onSuggest={onSuggest} />
       ) : (
-        <EmptyFeed loading={!libraryLoaded} connected={backendConfigured} onCreate={onCreate} />
+        <EmptyFeed
+          loading={!libraryLoaded}
+          connected={backendConfigured}
+          onVoice={onCreate}
+          onType={onCreateTyping}
+          onTopic={onSuggest}
+        />
       )}
       <Toast message={toast} onHide={hideToast} bottom={composerTop + Space[12]} />
       <VoiceComposer
@@ -230,9 +260,14 @@ function Shell() {
         onSubmit={onAsk}
         onList={() => setListOpen(true)}
         onKeyboardClose={onKeyboardClose}
+        idleHidden={!news.length}
       />
       <NewsListSheet
         visible={listOpen}
+        onCreate={() => {
+          setListOpen(false);
+          onCreate();
+        }}
         news={news}
         selectedId={selectedNewsId}
         onSelect={(id) => feed.current?.select(id)}

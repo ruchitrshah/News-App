@@ -121,7 +121,7 @@ export default function useCloudSpeech() {
     try {
       const perm = await requestRecordingPermissionsAsync();
       if (!perm.granted) {
-        setError('Microphone access is off. Turn it on in Settings to ask by voice.');
+        setError('Want to speak? Enable your mic in Settings.');
         return false;
       }
       await setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true });

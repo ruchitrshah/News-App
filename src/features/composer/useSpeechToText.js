@@ -27,7 +27,7 @@ function friendly(code) {
       return 'Voice needs a connection. Check your internet and try again.';
     case 'not-allowed':
     case 'service-not-allowed':
-      return 'Microphone access is off. Allow it to ask by voice.';
+      return 'Want to speak? Enable your mic.';
     case 'audio-capture':
       return 'No microphone found.';
     case 'busy':
@@ -84,7 +84,7 @@ function useNativeSpeech({ lang = 'en-US' } = {}) {
     try {
       const perm = await Speech.requestPermissionsAsync();
       if (!perm.granted) {
-        setError('Microphone access is off. Turn it on in Settings to ask by voice.');
+        setError('Want to speak? Enable your mic in Settings.');
         return false;
       }
       committed.current = '';

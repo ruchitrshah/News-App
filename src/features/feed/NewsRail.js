@@ -12,7 +12,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ScrollView, View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
 import { Plus } from 'lucide';
-import { BlurView } from 'expo-blur';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import Glass from '../../components/glass/Glass';
 import Icon from '../../components/icons/Icon';
@@ -112,29 +112,22 @@ export default function NewsRail({ news, selectedId, seenIds, onSelect, onCreate
   );
 }
 
-// Frosted strip behind the +. Web: backdrop blur with a feathered right edge
-// (a mask, so there's no seam). Native: expo-blur, tinted to the page.
+// What the pills slide under at the +: the page colour, solid behind the
+// button and fading out over its last stretch, so a pill dissolves as it
+// passes beneath rather than being cut. No blur — a blurred strip on a flat
+// white page only shows its own edges (a grey seam beside the card corner).
+const PAGE = Colors.surface.page;
 function PlusBacking() {
-  if (Platform.OS === 'web') {
-    return (
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          width: PLUS_ZONE - Space[4],
-          pointerEvents: 'none',
-          backgroundColor: ColorUtils.rgba(Colors.surface.page, 0.55),
-          backdropFilter: 'blur(12px) saturate(1.4)',
-          WebkitBackdropFilter: 'blur(12px) saturate(1.4)',
-          maskImage: 'linear-gradient(to right, #000 72%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to right, #000 72%, transparent)',
-        }}
-      />
-    );
-  }
-  return <BlurView intensity={28} tint="light" style={styles.plusBacking} pointerEvents="none" />;
+  return (
+    <LinearGradient
+      colors={[PAGE, PAGE, ColorUtils.rgba(PAGE, 0)]}
+      locations={[0, 0.72, 1]}
+      start={{ x: 0, y: 0.5 }}
+      end={{ x: 1, y: 0.5 }}
+      style={styles.plusBacking}
+      pointerEvents="none"
+    />
+  );
 }
 
 const selectedShadow = Platform.select({
@@ -192,14 +185,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   // From the screen edge to 4px short of the first pill (the gap is 10px).
+  // Ends 2px short of the first pill (the gap is 10px), so at rest it touches
+  // nothing; the fade only shows on pills scrolling underneath.
   plusBacking: {
     position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
-    width: PLUS_ZONE - Space[4],
-    overflow: 'hidden',
-    backgroundColor: ColorUtils.rgba(Colors.surface.page, 0.4),
+    width: PLUS_ZONE - Space[2],
   },
   plus: {
     marginLeft: EDGE,

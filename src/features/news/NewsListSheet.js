@@ -1,6 +1,6 @@
 // All news, full screen — opened from the bookmark in the voice bar, grouped
-// under date headers (Today · Yesterday · Mon, Sep 22 · Earlier), newest
-// first; the headers stick while you scroll their section. Tap a row to jump
+// under date headers (Today · Yesterday · Mon, Sep 22 · Earlier · Featured),
+// newest first; the headers stick while you scroll their section. Tap a row to jump
 // the feed to that news; the back button (or Android back) returns to it.
 //
 // The page is absolutely positioned over the SafeScreen, which ignores the
@@ -21,10 +21,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Image, Pressable, ScrollView, StyleSheet, Animated, BackHandler } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Check, ChevronLeft } from 'lucide';
+import { Check, ChevronLeft, Plus } from 'lucide';
 
 import Icon from '../../components/icons/Icon';
-import { illustrationFor } from '../../data/illustrations';
+import { illustrationFor, DEFAULT_ILLUSTRATION } from '../../data/illustrations';
 import { Colors, FontFamilies, Space, Radius, Motion, Palette, useReducedMotion } from '../../brand';
 import { useBottomInset } from '../../brand/responsive';
 import { TITLE, BODY } from '../feed/type';
@@ -57,12 +57,18 @@ function dayLabel(day, today) {
   return d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', ...(sameYear ? {} : { year: 'numeric' }) });
 }
 
-// [{ key, label, items }] — newest day first; undated news last, as "Earlier".
+// [{ key, label, items }] — your news by day, newest first; then undated
+// news as "Earlier"; then the briefings the app ships with, as "Featured".
 function sectionsOf(news) {
   const today = startOfDay(Date.now());
   const byDay = new Map();
   const undated = [];
+  const featured = [];
   for (const item of news) {
+    if (item.featured) {
+      featured.push(item);
+      continue;
+    }
     const t = dateOf(item);
     if (!t) {
       undated.push(item);
@@ -80,6 +86,7 @@ function sectionsOf(news) {
       items: rows.sort((a, b) => b.t - a.t).map((r) => r.item),
     }));
   if (undated.length) sections.push({ key: 'earlier', label: 'Earlier', items: undated });
+  if (featured.length) sections.push({ key: 'featured', label: 'Featured', items: featured });
   return sections;
 }
 
@@ -138,7 +145,7 @@ function Row({ item, index, open, selected, onPress, reduced }) {
   );
 }
 
-export default function NewsListSheet({ visible, news, selectedId, onSelect, onClose }) {
+export default function NewsListSheet({ visible, news, selectedId, onSelect, onClose, onCreate }) {
   const reduced = useReducedMotion();
   const bottom = useBottomInset(Space[16]);
   const insets = useSafeAreaInsets();
@@ -227,19 +234,67 @@ export default function NewsListSheet({ visible, news, selectedId, onSelect, onC
         <View style={styles.headerSpacer} />
       </View>
 
-      <ScrollView
-        style={styles.list}
-        contentContainerStyle={[styles.listContent, { paddingBottom: bottom }]}
-        showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={stickyIndices}
-      >
-        {children}
-      </ScrollView>
+      {news.length ? (
+        <ScrollView
+          style={styles.list}
+          contentContainerStyle={[styles.listContent, { paddingBottom: bottom }]}
+          showsVerticalScrollIndicator={false}
+          stickyHeaderIndices={stickyIndices}
+        >
+          {children}
+        </ScrollView>
+      ) : (
+        // Nothing made yet: say what this page will hold, and offer the one
+        // action that fills it.
+        <View style={[styles.empty, { paddingBottom: bottom + Space[40] }]}>
+          <View style={styles.emptyTile}>
+            <Image source={DEFAULT_ILLUSTRATION} style={styles.emptyArt} resizeMode="contain" />
+          </View>
+          <Text style={styles.emptyTitle} accessibilityRole="header">
+            Your briefings live here
+          </Text>
+          <Text style={styles.emptyBody}>Every briefing you make is kept here, grouped by day, so you can come back to it.</Text>
+          {onCreate ? (
+            <Pressable
+              onPress={onCreate}
+              accessibilityRole="button"
+              style={({ pressed }) => [styles.emptyCta, pressed && styles.rowPressed]}
+            >
+              <Icon icon={Plus} size={18} strokeWidth={2.2} color={Colors.text.onDark} />
+              <Text style={styles.emptyCtaText}>Make a briefing</Text>
+            </Pressable>
+          ) : null}
+        </View>
+      )}
     </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
+  empty: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: Space[40], gap: Space[10] },
+  emptyTile: {
+    width: 88,
+    height: 88,
+    borderRadius: Radius[24],
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.surface.subtle,
+    marginBottom: Space[6],
+  },
+  emptyArt: { width: 56, height: 56 },
+  emptyTitle: { ...TITLE, textAlign: 'center', color: Colors.text.primary },
+  emptyBody: { ...BODY, textAlign: 'center', color: Colors.text.secondary },
+  emptyCta: {
+    marginTop: Space[12],
+    height: 48,
+    paddingHorizontal: Space[20],
+    borderRadius: Radius.full,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Space[8],
+    backgroundColor: Colors.text.primary,
+  },
+  emptyCtaText: { ...BODY, fontFamily: FontFamilies.demi, color: Colors.text.onDark },
   page: {
     position: 'absolute',
     top: 0,

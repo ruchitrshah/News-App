@@ -106,7 +106,10 @@ const DEFAULT_PLACEHOLDER = 'Ask about this story';
 // Imperative: `openKeyboard(placeholder)` — the rail's + opens the field in
 // "new news" mode with its own prompt. `onKeyboardClose` fires when the field
 // is dismissed without sending, so the caller can drop that mode.
-function VoiceComposer({ onSubmit, onList, onKeyboardClose }, ref) {
+// `idleHidden`: tuck the voice bar away while idle (the empty feed has its
+// own, bigger voice button). It comes back for recording, the + screen and
+// typing.
+function VoiceComposer({ onSubmit, onList, onKeyboardClose, idleHidden = false }, ref) {
   const cardBottom = useCardBottom();
   const reducedMotion = useReducedMotion();
   const speech = useSpeechToText();
@@ -285,6 +288,7 @@ function VoiceComposer({ onSubmit, onList, onKeyboardClose }, ref) {
   const bottom = keyboardHeight ? keyboardHeight + Space[8] : restBottom;
 
   // Morph interpolations.
+  const barHidden = idleHidden && !recording && !creating && mode === 'voice';
   const barOpacity = morph.interpolate({ inputRange: [0, 0.5], outputRange: [1, 0], extrapolate: 'clamp' });
   const barScale = morph.interpolate({ inputRange: [0, 0.5], outputRange: [1, 0.94], extrapolate: 'clamp' });
   const fieldRight = morph.interpolate({ inputRange: [0, 1], outputRange: [INSET, 0] });
@@ -325,8 +329,8 @@ function VoiceComposer({ onSubmit, onList, onKeyboardClose }, ref) {
 
         <View style={styles.row}>
           <Animated.View
-            style={[styles.bar, { opacity: barOpacity, transform: [{ scale: barScale }] }]}
-            pointerEvents={mode === 'voice' ? 'auto' : 'none'}
+            style={[styles.bar, { opacity: barHidden ? 0 : barOpacity, transform: [{ scale: barScale }] }]}
+            pointerEvents={mode === 'voice' && !barHidden ? 'auto' : 'none'}
           >
             {creating || recording ? (
               <PressableGlass onPress={creating ? closeCreate : cancelVoice} label={creating ? 'Close' : 'Cancel'} style={styles.circle}>

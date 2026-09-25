@@ -35,7 +35,9 @@ async function askLocal({ prompt, newsId, aboutStory, mode }) {
 const TERMINAL = new Set(['ready', 'failed', 'no_new']);
 
 // A server job → the { request, beats } shape the app consumes everywhere.
-function fromJob(job) {
+// `videoFor(path)` resolves a clip path; by default, a URL on the server
+// (bundled starter briefings pass their own resolver — see data/starter.js).
+export function fromJob(job, videoFor = (p) => `${LOCAL_URL}${p}`) {
   return {
     request: {
       id: job.id,
@@ -55,7 +57,7 @@ function fromJob(job) {
     beats: (job.beats || []).map((b) => ({
       ...b,
       id: `${job.id}-${b.idx}`,
-      video_url: b.video_url ? `${LOCAL_URL}${b.video_url}` : null,
+      video_url: b.video_url ? videoFor(b.video_url) : null,
       created_at: job.created_at,
     })),
   };
@@ -217,7 +219,8 @@ export function beatsToStories(request, beats) {
       trace: request.trace ?? null,
       error: b.error ?? null,
       createdAt: Date.parse(b.created_at) || Date.now(),
-      video: b.video_url ? { uri: b.video_url } : null,
+      // A bundled clip is an asset module (number); a server clip is a URL.
+      video: typeof b.video_url === 'number' ? b.video_url : b.video_url ? { uri: b.video_url } : null,
       clip: b.clip_start != null && b.clip_end != null ? { start: Number(b.clip_start), end: Number(b.clip_end) } : null,
       // Real word-timed captions when the pipeline made the voiceover; an even
       // split of the narration otherwise.

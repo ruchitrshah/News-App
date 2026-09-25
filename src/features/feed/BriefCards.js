@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   light: { backgroundColor: Colors.surface.page },
   dark: { backgroundColor: FeedColors.video.background },
 
-  editorial: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: CARD.innerX + Space[4], gap: Space[8] },
+  editorial: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: CARD.innerX, gap: Space[8] },
   headline: { ...TITLE, color: Colors.text.primary },
   caption: { ...BODY, color: Colors.text.secondary },
   onDark: { color: Colors.text.onDark },
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   onDarkSoft: { color: ColorUtils.rgba(Palette.base.white, 0.85) },
 
   // Copy sits at the bottom; the top of the card is left to the image.
-  numberWrap: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: CARD.innerX + Space[4], gap: Space[6] },
+  numberWrap: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: CARD.innerX, gap: Space[6] },
   comparison: { ...BODY, color: Colors.text.secondary },
   rule: { height: StyleSheet.hairlineWidth * 2, backgroundColor: Colors.border.subtle, marginVertical: Space[12] },
 
@@ -170,5 +170,5 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     ...Platform.select({ web: { position: 'relative' }, default: {} }),
   },
-  embedText: { paddingTop: Space[24], paddingHorizontal: CARD.innerX + Space[4], gap: Space[8] },
+  embedText: { paddingTop: Space[24], paddingHorizontal: CARD.innerX, gap: Space[8] },
 });
