@@ -55,3 +55,5 @@ supabase/.branches/
 
 # Local video files (not published)
 assets/videos/
+
+.vercel

@@ -74,6 +74,16 @@ Press `w` for web, or scan the QR code with a development build on your phone
 (same Wi-Fi as your Mac). The server prints the LAN address to put in
 `EXPO_PUBLIC_PIPELINE_URL`.
 
+**Put the web version online** (Vercel, backed by the server on your Mac):
+
+```bash
+./scripts/go-live.sh
+```
+
+It starts the server, opens a free Cloudflare tunnel to it, points the
+Vercel project at the tunnel and redeploys. Keep that terminal open while
+the site is in use; web questions are capped by `MAX_QUESTIONS_PER_DAY`.
+
 **Costs:** research is roughly $0.60 per question; each generated video card
 adds about $0.40. `MAX_VIDEO_REQUESTS_PER_DAY` caps generation.
 

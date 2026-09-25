@@ -15,7 +15,7 @@
 //
 //   npm run pipeline        (reads FAL_KEY + PIPELINE_TOKEN from .env)
 import http from 'node:http';
-import { readFileSync, existsSync, mkdirSync, createReadStream, statSync, writeFileSync } from 'node:fs';
+import { readFileSync, existsSync, mkdirSync, createReadStream, statSync, writeFileSync, cpSync, readdirSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
@@ -26,24 +26,37 @@ import { buildStory } from './pipeline/research.mjs';
 import { makeBeat } from './pipeline/generate.mjs';
 
 // ── Config ───────────────────────────────────────────────────────────────────
+// Locally: .env. Hosted (fal): environment variables / fal secrets, no .env.
 const env = Object.fromEntries(
-  readFileSync('.env', 'utf8')
+  (existsSync('.env') ? readFileSync('.env', 'utf8') : '')
     .split('\n')
     .filter((l) => /^[A-Z0-9_]+=/.test(l))
     .map((l) => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()])
 );
-const FAL_KEY = process.env.FAL_KEY || env.FAL_KEY;
-const TOKEN = process.env.PIPELINE_TOKEN || env.PIPELINE_TOKEN;
+const FAL_KEY = process.env.FAL_KEY || process.env.GENIE_FAL_KEY || env.FAL_KEY;
+const TOKEN = process.env.PIPELINE_TOKEN || process.env.GENIE_PIPELINE_TOKEN || env.PIPELINE_TOKEN;
+// Optional second token for the public web build (served through a tunnel).
+// Questions made with it count against MAX_QUESTIONS_PER_DAY; yours don't.
+const WEB_TOKEN = process.env.WEB_PIPELINE_TOKEN || env.WEB_PIPELINE_TOKEN || null;
 const PORT = Number(process.env.PORT || env.PIPELINE_PORT || 8787);
 const MAX_VIDEO_REQUESTS_PER_DAY = Number(process.env.MAX_VIDEO_REQUESTS_PER_DAY ?? env.MAX_VIDEO_REQUESTS_PER_DAY ?? 6);
-const FRESH_DAYS = Number(env.FRESH_DAYS || 7);
-if (!FAL_KEY) throw new Error('FAL_KEY missing from .env');
-if (!TOKEN) throw new Error('PIPELINE_TOKEN missing from .env');
+// Spend guard for the public web build: its new questions per UTC day.
+const MAX_QUESTIONS_PER_DAY = Number(process.env.MAX_QUESTIONS_PER_DAY ?? env.MAX_QUESTIONS_PER_DAY ?? 0) || Infinity;
+const FRESH_DAYS = Number(process.env.FRESH_DAYS || env.FRESH_DAYS || 7);
+if (!FAL_KEY) throw new Error('FAL_KEY missing (.env or environment)');
+if (!TOKEN) throw new Error('PIPELINE_TOKEN missing (.env or environment)');
 configureFal(FAL_KEY);
 
-const DATA = path.resolve('server/data');
+// Where jobs + finished clips live. Hosted, this is fal's persistent /data
+// disk; on first boot it's seeded from the stories baked into the image.
+const DATA = path.resolve(process.env.PIPELINE_DATA_DIR || 'server/data');
 const MEDIA = path.join(DATA, 'media');
 const JOBS_FILE = path.join(DATA, 'jobs.json');
+const SEED = process.env.PIPELINE_SEED_DIR && path.resolve(process.env.PIPELINE_SEED_DIR);
+if (SEED && existsSync(SEED) && !existsSync(JOBS_FILE)) {
+  cpSync(SEED, DATA, { recursive: true });
+  console.log(`Seeded ${DATA} from ${SEED} (${readdirSync(path.join(DATA, 'media')).length} clips)`);
+}
 mkdirSync(MEDIA, { recursive: true });
 
 const jobs = new Map(existsSync(JOBS_FILE) ? JSON.parse(readFileSync(JOBS_FILE, 'utf8')).map((j) => [j.id, j]) : []);
@@ -201,7 +214,9 @@ const server = http.createServer(async (req, res) => {
   if (url.pathname === '/health') return send(res, 200, { ok: true });
   if (url.pathname.startsWith('/media/') && req.method === 'GET') return serveMedia(req, res, url.pathname.slice(7));
 
-  if (req.headers['x-pipeline-token'] !== TOKEN) return send(res, 401, { error: 'Bad pipeline token' });
+  const given = req.headers['x-pipeline-token'];
+  const via = given === TOKEN ? 'app' : WEB_TOKEN && given === WEB_TOKEN ? 'web' : null;
+  if (!via) return send(res, 401, { error: 'Bad pipeline token' });
 
   if (url.pathname === '/ask' && req.method === 'POST') {
     let body = '';
@@ -214,9 +229,15 @@ const server = http.createServer(async (req, res) => {
     }
     const prompt = String(input.prompt || '').trim();
     if (prompt.length < 3 || prompt.length > 500) return send(res, 400, { error: 'Question must be 3–500 characters.' });
+    const today = new Date().toISOString().slice(0, 10);
+    const asked = [...jobs.values()].filter((j) => j.via === 'web' && j.created_at?.startsWith(today)).length;
+    if (via === 'web' && asked >= MAX_QUESTIONS_PER_DAY) {
+      return send(res, 429, { error: `Genie has answered its ${MAX_QUESTIONS_PER_DAY} questions for today. Try again tomorrow.` });
+    }
     const now = new Date().toISOString();
     const job = {
       id: randomUUID(),
+      via,
       news_id: String(input.newsId || ''),
       mode: input.mode === 'new' ? 'new' : 'append',
       prompt,
